@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="portal-20261022-1605">
+<html lang="en" data-build="portal-20261022-1619">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -735,7 +735,8 @@ function fxFobFiles(f){
   return (f.files || []).filter(function(x){ return x && x.tag === 'FedEx'; });
 }
 function fxFileRow(kind, uid, fl, i){
-  return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid #EDF0F4"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📄 ' + fxEsc(fl.name || 'FedEx file') + '</span><button class="emci-refresh" onclick="fedexOpenFile(\'' + kind + '\',\'' + uid + '\',' + i + ')">Open</button></div>';
+  var nm = String(fl.name || 'FedEx file').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid #EDF0F4"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📄 ' + fxEsc(fl.name || 'FedEx file') + '</span><span style="flex:0 0 auto;display:flex;gap:6px;"><button class="emci-refresh" onclick="fedexOpenFile(\'' + kind + '\',\'' + uid + '\',' + i + ')">Open</button><button class="emci-refresh" style="color:#c53030;border-color:#c53030;" onclick="fedexDeleteFile(\'' + kind + '\',\'' + uid + '\',' + i + ',\'' + fxEsc(nm) + '\')">Delete</button></span></div>';
 }
 function fxFobRows(members){
   if(!members.length) return '<div class="emci-note">No fobs in this shipment yet.</div>';
@@ -746,6 +747,7 @@ function fxFobRows(members){
       var realIdx = (f.files || []).indexOf(fl);
       h += '<tr><td colspan="4" style="padding:0 2px;">' + fxFileRow('fob', f.uid, fl, realIdx) + '</td></tr>';
     });
+    h += '<tr><td colspan="4" style="padding:4px 2px;"><button class="emci-refresh" onclick="fedexAddFile(\'fob\',\'' + f.uid + '\')">➕ Add FedEx file</button></td></tr>';
   });
   return h + '</table>';
 }
@@ -775,6 +777,7 @@ function renderFedexView(){
                : '<div class="emci-note">Started ' + fxDate(sh.createdAt) + (sh.createdBy ? ' by ' + fxEsc(sh.createdBy) : '') + '</div>')
         + fxFobRows(members)
         + ((sh.files || []).length ? '<div style="margin-top:8px;font-weight:700;font-size:13px;">FedEx files</div>' + (sh.files || []).map(function(fl, i){ return fxFileRow('ship', sh.uid, fl, i); }).join('') : '')
+        + '<div style="margin-top:8px;"><button class="emci-refresh" onclick="fedexAddFile(\'ship\',\'' + sh.uid + '\')">➕ Add file</button></div>' 
         + '</div>';
       members.forEach(function(f){ FEDEX_PRINT.push([sh.tracking || '-', fxDate(sh.finalizedAt || f.shipWhen), f.prop || '', f.fobId || '', f.num || '-']); });
     });
@@ -796,7 +799,8 @@ function renderFedexView(){
       cards += '<div class="emci-card"><h2>📄 More FedEx files</h2><div class="emci-note">FedEx files attached to fobs that are not in a shipment above.</div>'
         + extra.map(function(f){
             return '<div style="margin-top:8px;font-weight:700;font-size:13.5px;">' + fxEsc(f.fobId) + ' · tag ' + fxEsc(f.num || '-') + ' · ' + fxEsc(f.prop || '') + '</div>'
-              + fxFobFiles(f).map(function(fl){ return fxFileRow('fob', f.uid, fl, (f.files || []).indexOf(fl)); }).join('');
+              + fxFobFiles(f).map(function(fl){ return fxFileRow('fob', f.uid, fl, (f.files || []).indexOf(fl)); }).join('')
+              + '<div style="margin-top:6px;"><button class="emci-refresh" onclick="fedexAddFile(\'fob\',\'' + f.uid + '\')">➕ Add FedEx file</button></div>';
           }).join('') + '</div>';
     }
     if(!cards) cards = '<div class="emci-card"><div class="emci-note" style="text-align:center;padding:16px 8px;">No FedEx shipments yet.<br>Shipments and their FedEx files from the Fobs app will show up here.</div></div>';
@@ -823,6 +827,70 @@ function fedexOpenFile(kind, uid, idx){
     + (isImg ? '<img src="' + fl.data + '" style="flex:1;min-height:0;object-fit:contain;width:100%;">'
              : '<iframe src="' + fl.data + '" style="flex:1;min-height:0;width:100%;background:#fff;border:none;border-radius:8px;"></iframe>');
   document.body.appendChild(v);
+}
+function fedexReadFile(file, cb){
+  var reader = new FileReader();
+  reader.onload = function(){
+    var data = reader.result;
+    if((file.type || '').indexOf('image/') === 0){
+      var img = new Image();
+      img.onload = function(){
+        var max = 1600, w = img.width, h = img.height;
+        if(w > max || h > max){ var r = max / Math.max(w, h); w = Math.round(w * r); h = Math.round(h * r); }
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        cb({name: file.name || 'fedex-file.jpg', type: 'image/jpeg', data: c.toDataURL('image/jpeg', 0.85)});
+      };
+      img.onerror = function(){ cb({name: file.name || 'fedex-file', type: file.type || '', data: data}); };
+      img.src = data;
+    } else {
+      cb({name: file.name || 'fedex-file', type: file.type || '', data: data});
+    }
+  };
+  reader.readAsDataURL(file);
+}
+function fedexMutate(kind, uid, fn, msg){
+  driveRow('secure-alert-state').then(function(d){
+    var target = null;
+    if(kind === 'ship') target = (d.shipments || []).filter(function(s){ return s.uid === uid; })[0];
+    else target = (d.fobs || []).filter(function(f){ return f.uid === uid; })[0];
+    if(!target){ alert('Could not find that record — tap Refresh and try again.'); return null; }
+    if(fn(target) === false){ return null; }
+    d._ts = Date.now();
+    return fetch(CHAT_SB + '/rest/v1/app_records?id=eq.secure-alert-state', {method: 'PATCH', headers: Object.assign(padHdr(), {'Content-Type': 'application/json', 'Prefer': 'return=minimal'}), body: JSON.stringify({data: d, updated_at: new Date().toISOString()})});
+  }).then(function(r){
+    if(!r) return;
+    if(!r.ok) throw new Error('save failed');
+    renderFedexView(); if(msg) alert(msg);
+  }).catch(function(){ alert('Could not save — check connection and try again.'); });
+}
+function fedexAddFile(kind, uid){
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*,.pdf';
+  inp.onchange = function(){
+    var file = inp.files && inp.files[0]; if(!file) return;
+    if((file.type || '').indexOf('image/') !== 0 && file.size > 4 * 1024 * 1024){ alert('That file is too big — PDFs up to 4 MB.'); return; }
+    fedexReadFile(file, function(rec){
+      fedexMutate(kind, uid, function(target){
+        target.files = target.files || [];
+        if(kind === 'fob'){ rec.tag = 'FedEx'; target.files.push(rec); target.hist = target.hist || []; target.hist.push({t: new Date().toISOString(), e: 'FedEx file attached: ' + rec.name + ' (via portal)'}); }
+        else target.files.push(rec);
+      }, 'File added.');
+    });
+  };
+  inp.click();
+}
+function fedexDeleteFile(kind, uid, idx, name){
+  if(!confirm('Delete "' + (name || 'this file') + '"? This removes the file copy from the app.')) return;
+  fedexMutate(kind, uid, function(target){
+    var arr = target.files || [];
+    var j = (arr[idx] && arr[idx].name === name) ? idx : -1;
+    if(j < 0){ for(var k = 0; k < arr.length; k++){ if(arr[k].name === name){ j = k; break; } } }
+    if(j < 0){ alert('That file is already gone — tap Refresh.'); return false; }
+    var gone = arr[j];
+    target.files = arr.filter(function(_, i){ return i !== j; });
+    if(kind === 'fob'){ target.hist = target.hist || []; target.hist.push({t: new Date().toISOString(), e: 'FedEx file removed: ' + (gone.name || 'file') + ' (via portal)'}); }
+  }, 'File deleted.');
 }
 function printFedexList(){
   if(!FEDEX_PRINT.length){ alert('No shipped fobs to print yet.'); return; }
