@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="portal-20261021-2145">
+<html lang="en" data-build="portal-20261022-1605">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -158,6 +158,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
     <div class="tabpage" id="page-contractor"><div id="contractorView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
     <div class="tabpage" id="page-emci"><div id="emciView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
     <div class="tabpage" id="page-visits"><div id="visitsView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
+    <div class="tabpage" id="page-fedex"><div id="fedexView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
     <div class="tabpage" id="page-inspect"><iframe id="frame-inspect" title="Daily Inspections" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
     <div class="tabpage" id="page-packages"><iframe id="frame-packages" title="Package Tracking" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
     <div class="tabpage" id="page-parking"><iframe id="frame-parking" title="Parking Tickets" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
@@ -219,6 +220,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
     <button data-tab="inspect" onclick="switchTab('inspect')"><span class="ico">📋</span>Inspect</button>
     <button data-tab="drive" onclick="switchTab('drive')"><span class="ico">🚗</span>Drive</button>
     <button data-tab="visits" onclick="switchTab('visits')"><span class="ico">🧾</span>Visits</button>
+    <button data-tab="fedex" onclick="switchTab('fedex')"><span class="ico">🚛</span>FedEx</button>
   </div>
 </div>
 <div id="portalPrint" style="display:none"></div>
@@ -718,6 +720,116 @@ function deleteVisit(uid){
     .then(function(){ renderVisitsView(); })
     .catch(function(){ alert('Could not delete \u2014 check connection and try again.'); });
 }
+/* ---------- FedEx shipments & files (from the Fobs app data) ---------- */
+var FEDEX_STATE = null, FEDEX_PRINT = [];
+function fxEsc(s){ return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function fxDate(iso){
+  if(!iso) return '-';
+  var d = new Date(iso); if(isNaN(d.getTime())) return String(iso);
+  return d.toLocaleString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'});
+}
+function fxTrackLink(trk){
+  return '<a href="https://www.fedex.com/fedextrack/?trknbr=' + encodeURIComponent(trk) + '" target="_blank" rel="noopener" style="color:#1a365d;font-weight:700;">' + fxEsc(trk) + '</a>';
+}
+function fxFobFiles(f){
+  return (f.files || []).filter(function(x){ return x && x.tag === 'FedEx'; });
+}
+function fxFileRow(kind, uid, fl, i){
+  return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid #EDF0F4"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📄 ' + fxEsc(fl.name || 'FedEx file') + '</span><button class="emci-refresh" onclick="fedexOpenFile(\'' + kind + '\',\'' + uid + '\',' + i + ')">Open</button></div>';
+}
+function fxFobRows(members){
+  if(!members.length) return '<div class="emci-note">No fobs in this shipment yet.</div>';
+  var h = '<table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;"><tr style="text-align:left;color:#4a5568;"><th style="padding:4px 2px;">Fob ID</th><th>Tag</th><th>Hotel</th><th>Received</th></tr>';
+  members.forEach(function(f){
+    h += '<tr style="border-top:1px solid #EDF0F4;"><td style="padding:5px 2px;font-weight:600;">' + fxEsc(f.fobId) + '</td><td>' + fxEsc(f.num || '-') + '</td><td>' + fxEsc(f.prop || '') + '</td><td>' + (f.receivedAt ? '✓ ' + fxDate(f.receivedAt) : '') + '</td></tr>';
+    fxFobFiles(f).forEach(function(fl, i){
+      var realIdx = (f.files || []).indexOf(fl);
+      h += '<tr><td colspan="4" style="padding:0 2px;">' + fxFileRow('fob', f.uid, fl, realIdx) + '</td></tr>';
+    });
+  });
+  return h + '</table>';
+}
+function renderFedexView(){
+  var box = document.getElementById('fedexView'); if(!box) return;
+  box.innerHTML = '<div class="emci-card"><div class="emci-note">Loading FedEx shipments…</div></div>';
+  driveRow('secure-alert-state').then(function(d){
+    FEDEX_STATE = d || {}; FEDEX_PRINT = [];
+    var fobs = Array.isArray(d.fobs) ? d.fobs : [];
+    var ships = Array.isArray(d.shipments) ? d.shipments : [];
+    var shown = {};
+    var byShip = {};
+    fobs.forEach(function(f){ if(f.shipId){ (byShip[f.shipId] = byShip[f.shipId] || []).push(f); } });
+    var h = '<div class="emci-card"><h2>🚛 FedEx — shipments &amp; files</h2>'
+      + '<div class="emci-note">Every fob shipment to SecurAlert with its FedEx tracking and the attached FedEx file copies.</div>'
+      + '<div style="margin-top:8px;"><button class="emci-refresh" onclick="renderFedexView()">↻ Refresh</button> <button class="emci-refresh" onclick="printFedexList()">🖨 Print list</button></div></div>';
+    var cards = '';
+    var sorted = ships.slice().sort(function(a, b){ return String(b.finalizedAt || b.createdAt || '').localeCompare(String(a.finalizedAt || a.createdAt || '')); });
+    sorted.forEach(function(sh){
+      var members = byShip[sh.uid] || [];
+      members.forEach(function(f){ shown[f.uid] = 1; });
+      var fin = sh.status === 'finalized';
+      cards += '<div class="emci-card"><h2>📦 Shipment' + (sh.tracking ? ' — FedEx ' + fxEsc(sh.tracking) : '') + '</h2>'
+        + '<div style="margin:6px 0;"><span style="display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;' + (fin ? 'background:#c6f6d5;color:#276749;' : 'background:#fefcbf;color:#975a16;') + '">' + (fin ? '✓ SHIPPED OUT' : 'BEING PREPARED') + '</span></div>'
+        + (sh.tracking ? '<div class="emci-note">FedEx tracking: ' + fxTrackLink(sh.tracking) + '</div>' : '')
+        + (fin ? '<div class="emci-note">Shipped out ' + fxDate(sh.finalizedAt) + (sh.finalizedBy ? ' by ' + fxEsc(sh.finalizedBy) : '') + '</div>'
+               : '<div class="emci-note">Started ' + fxDate(sh.createdAt) + (sh.createdBy ? ' by ' + fxEsc(sh.createdBy) : '') + '</div>')
+        + fxFobRows(members)
+        + ((sh.files || []).length ? '<div style="margin-top:8px;font-weight:700;font-size:13px;">FedEx files</div>' + (sh.files || []).map(function(fl, i){ return fxFileRow('ship', sh.uid, fl, i); }).join('') : '')
+        + '</div>';
+      members.forEach(function(f){ FEDEX_PRINT.push([sh.tracking || '-', fxDate(sh.finalizedAt || f.shipWhen), f.prop || '', f.fobId || '', f.num || '-']); });
+    });
+    var legacy = {};
+    fobs.forEach(function(f){ if(!f.shipId && f.shipTracking){ (legacy[f.shipTracking] = legacy[f.shipTracking] || []).push(f); } });
+    Object.keys(legacy).forEach(function(trk){
+      var members = legacy[trk];
+      members.forEach(function(f){ shown[f.uid] = 1; });
+      var when = members.map(function(f){ return f.shipWhen || ''; }).sort().pop();
+      cards += '<div class="emci-card"><h2>📦 Shipment — FedEx ' + fxEsc(trk) + '</h2>'
+        + '<div style="margin:6px 0;"><span style="display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#c6f6d5;color:#276749;">✓ SHIPPED OUT</span></div>'
+        + '<div class="emci-note">FedEx tracking: ' + fxTrackLink(trk) + '</div>'
+        + '<div class="emci-note">Shipped out ' + fxDate(when) + '</div>'
+        + fxFobRows(members) + '</div>';
+      members.forEach(function(f){ FEDEX_PRINT.push([trk, fxDate(f.shipWhen), f.prop || '', f.fobId || '', f.num || '-']); });
+    });
+    var extra = fobs.filter(function(f){ return !shown[f.uid] && fxFobFiles(f).length; });
+    if(extra.length){
+      cards += '<div class="emci-card"><h2>📄 More FedEx files</h2><div class="emci-note">FedEx files attached to fobs that are not in a shipment above.</div>'
+        + extra.map(function(f){
+            return '<div style="margin-top:8px;font-weight:700;font-size:13.5px;">' + fxEsc(f.fobId) + ' · tag ' + fxEsc(f.num || '-') + ' · ' + fxEsc(f.prop || '') + '</div>'
+              + fxFobFiles(f).map(function(fl){ return fxFileRow('fob', f.uid, fl, (f.files || []).indexOf(fl)); }).join('');
+          }).join('') + '</div>';
+    }
+    if(!cards) cards = '<div class="emci-card"><div class="emci-note" style="text-align:center;padding:16px 8px;">No FedEx shipments yet.<br>Shipments and their FedEx files from the Fobs app will show up here.</div></div>';
+    box.innerHTML = h + cards;
+  }).catch(function(){
+    box.innerHTML = '<div class="emci-card"><div class="emci-note">Could not load the shipments — check connection and tap the FedEx tab again.</div></div>';
+  });
+}
+function fedexOpenFile(kind, uid, idx){
+  var d = FEDEX_STATE || {};
+  var rec = null;
+  if(kind === 'ship') rec = (d.shipments || []).filter(function(s){ return s.uid === uid; })[0];
+  else rec = (d.fobs || []).filter(function(f){ return f.uid === uid; })[0];
+  var fl = rec && (rec.files || [])[idx];
+  if(!fl || !fl.data){ alert('That file has no readable copy attached.'); return; }
+  var old = document.getElementById('fedexViewer'); if(old) old.remove();
+  var isImg = (fl.type || '').indexOf('image/') === 0;
+  var v = document.createElement('div');
+  v.id = 'fedexViewer';
+  v.style.cssText = 'position:fixed;inset:0;background:rgba(10,20,40,.92);z-index:9999;display:flex;flex-direction:column;padding:14px;';
+  v.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;"><div style="color:#fff;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + fxEsc(fl.name || 'FedEx file') + '</div>'
+    + '<div style="flex:0 0 auto;"><a href="' + fl.data + '" download="' + fxEsc(fl.name || 'fedex-file') + '" style="background:#c9a227;color:#12233d;font-weight:800;border-radius:8px;padding:8px 12px;text-decoration:none;margin-right:8px;">Download</a>'
+    + '<button onclick="document.getElementById(\'fedexViewer\').remove()" style="background:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer;">Close</button></div></div>'
+    + (isImg ? '<img src="' + fl.data + '" style="flex:1;min-height:0;object-fit:contain;width:100%;">'
+             : '<iframe src="' + fl.data + '" style="flex:1;min-height:0;width:100%;background:#fff;border:none;border-radius:8px;"></iframe>');
+  document.body.appendChild(v);
+}
+function printFedexList(){
+  if(!FEDEX_PRINT.length){ alert('No shipped fobs to print yet.'); return; }
+  var rows = FEDEX_PRINT.map(function(r){ return [r[0], r[1], r[2], r[3], r[4]]; });
+  portalPrintDoc('FedEx shipments — SecurAlert fobs', '<p style="font-family:Arial,sans-serif;font-size:13px;color:#2d3748;margin:0 0 10px;">Fobs shipped to SecurAlert by FedEx — ' + portalStamp() + '</p>' + portalTable(['FedEx tracking', 'Shipped out', 'Hotel', 'Fob ID', 'Tag'], rows));
+}
+
 function printVisitsList(){
   if(!VISITS.length){ alert('No visits on file yet.'); return; }
   var rows = VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).map(function(v){
@@ -807,6 +919,7 @@ function switchTab(which){
   if(which === 'emci') renderEmciView();
   if(which === 'contractor') renderContractorView();
   if(which === 'visits') renderVisitsView();
+  if(which === 'fedex') renderFedexView();
   if(which === 'chat'){
     setTimeout(function(){ try{ if(_chatNewest) localStorage.setItem('chatSeenTs', _chatNewest); if(_dmNewest) localStorage.setItem('dmAlertSeen', _dmNewest); }catch(e){} setChatBadge(0); }, 1500);
   }
