@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="portal-20261022-1619">
+<html lang="en" data-build="portal-20261028-1630">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -644,7 +644,7 @@ function renderVisitsView(){
     var h = '<div class="emci-card"><h2>Technician service visits</h2>'
       + '<p class="emci-note" style="margin:0 0 8px;">Our documentation of what the technician from each company did on each visit \u2014 SecurAlert, EMCI and Sciens. Internal only, not shared with the vendors. ' + VISITS.length + ' visit' + (VISITS.length === 1 ? '' : 's') + ' on file.</p>'
       + '<button class="emci-refresh" onclick="toggleVisitForm()">\uFF0B Log a visit</button> <button class="emci-refresh" onclick="renderVisitsView()">\u21bb Refresh</button> <button class="emci-refresh" onclick="printVisitsList()">\uD83D\uDDA8 Print report</button>'
-      + (mine === 'Jeremy Levin' ? ' <button class="emci-refresh" onclick="emailVisitsList()">\u2709 Email report</button>' : '')
+      + ' <button class="emci-refresh" onclick="emailVisitsList()">\u2709 Email report</button>'
       + '<div id="visitForm" style="display:none;margin-top:12px;">'
       + '<label class="vt-label">Date &amp; time of visit</label><input type="datetime-local" id="vf-when" class="vt-input">'
       + '<label class="vt-label">Hotel</label><select id="vf-hotel" class="vt-input">' + VISIT_HOTELS.map(function(c){ return '<option value="' + c + '">' + emciEsc(visitHotelName(c)) + '</option>'; }).join('') + '</select>'
@@ -906,7 +906,6 @@ function printVisitsList(){
   portalPrintDoc('Technician service visits \u2014 service report', '<p style="font-family:Arial,sans-serif;font-size:13px;color:#2d3748;margin:0 0 10px;">Internal documentation of vendor technician service visits (SecurAlert, EMCI, Sciens) \u2014 what was done at each hotel.</p>' + portalTable(['Date / time', 'Company', 'Hotel', 'Technician', 'What was done', 'Items', 'Logged by'], rows));
 }
 function emailVisitsList(){
-  if(ssoName() !== 'Jeremy Levin'){ alert('Only Jeremy can email this report.'); return; }
   if(!VISITS.length){ alert('No visits on file yet.'); return; }
   var lines = ['TECHNICIAN SERVICE VISITS \u2014 SERVICE REPORT', 'Loews Hotels Security \u00B7 ' + portalStamp(), 'Internal documentation \u2014 SecurAlert, EMCI and Sciens visits. Not shared with the vendors.', ''];
   VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).forEach(function(v){
@@ -917,10 +916,19 @@ function emailVisitsList(){
     lines.push('Logged by ' + (v.by || '\u2014'));
     lines.push('');
   });
-  lines.push('Sent from the Loews Security portal by Jeremy Levin.');
-  portalMail('Jeremy.levin@loewshotels.com', 'Technician service visits \u2014 service report \u2014 ' + portalStamp(), lines.join('\n'))
-    .then(function(){ alert('Service report emailed to you.'); })
-    .catch(function(){ alert('Email failed \u2014 check connection and try again.'); });
+  var sender = ssoName() || 'A team member';
+  lines.push('Sent from the Loews Security portal by ' + sender + '.');
+  var vrows = VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).map(function(v){
+    return [emciEsc(visitFmtWhen(v.when)), emciEsc(v.vendor || 'SecurAlert'), emciEsc(visitHotelName(v.hotel)), emciEsc(v.tech || 'Technician'), '<span style="white-space:pre-wrap;">' + emciEsc(v.did || '') + '</span>', emciEsc(v.items || '\u2014'), emciEsc(v.by || '\u2014')];
+  });
+  var vhtml = '<div style="font-family:Arial,sans-serif;"><div style="font-size:19px;font-weight:800;color:#1a365d;">Technician service visits \u2014 service report</div>'
+    + '<div style="font-size:12.5px;color:#4a5568;margin:2px 0 10px;">Loews Hotels Security \u00B7 ' + emciEsc(portalStamp()) + ' \u00B7 Internal documentation \u2014 SecurAlert, EMCI and Sciens visits. Not shared with the vendors.</div>'
+    + portalTable(['Date / time', 'Company', 'Hotel', 'Technician', 'What was done', 'Items', 'Logged by'], vrows)
+    + '<div style="margin-top:12px;font-size:11.5px;color:#718096;">Sent from the Loews Security portal by ' + emciEsc(sender) + ' \u00B7 Produced by: JHNL Security Tech</div></div>';
+  var vsubj = 'Technician service visits \u2014 service report \u2014 ' + portalStamp();
+  fetch('https://api.emailjs.com/api/v1.0/email/send', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({service_id: EJ_SERVICE_P, template_id: 'template_8171jco', user_id: EJ_KEY_P, template_params: {to_email: 'Jeremy.levin@loewshotels.com', subject: vsubj, body: vhtml}})})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); alert('Service report emailed to Jeremy.'); })
+    .catch(function(){ portalMail('Jeremy.levin@loewshotels.com', vsubj, lines.join('\n')).then(function(){ alert('Service report emailed to Jeremy.'); }).catch(function(){ alert('Email failed \u2014 check connection and try again.'); }); });
 }
 
 function loadTab(which){
