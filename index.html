@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="portal-20261028-1630">
+<html lang="en" data-build="portal-20261029-2045">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -116,6 +116,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 </style>
 </head>
 <body>
+<!-- ================= HOLIDAY SPLASH ================= -->
+<style>
+#holidaySplash{position:fixed;inset:0;z-index:9999;background:#000;display:none;}
+#holidaySplash.on{display:block;}
+#holidaySplash video,#holidaySplash img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+#hsTap{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.92);text-shadow:0 1px 8px rgba(0,0,0,.85);pointer-events:none;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+#hsSound{position:absolute;top:16px;right:16px;background:#C9A227;color:#0B2A4A;border:none;font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+</style>
+<div id="holidaySplash">
+  <img id="hsPoster" alt="">
+  <video id="hsVideo" playsinline loop muted preload="auto"></video>
+  <button id="hsSound" type="button">🔊 Sound on</button>
+  <div id="hsTap">Tap to enter</div>
+</div>
 
 <!-- ================= LOGIN ================= -->
 <div id="uni-login">
@@ -1237,6 +1251,44 @@ document.getElementById('uni-pin').addEventListener('keypress', function(e){
       showShell(name);
     }
   }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  var now = new Date();
+  var m = now.getMonth() + 1, d = now.getDate();
+  function thanksgivingDay(y){ var nov1 = new Date(y, 10, 1); return 1 + ((4 - nov1.getDay() + 7) % 7) + 21; }
+  var key = null;
+  if(m === 10 && d === 31) key = 'halloween';
+  else if(m === 11 && d === thanksgivingDay(now.getFullYear())) key = 'thanksgiving';
+  else if(m === 12 && d === 25) key = 'christmas';
+  else if(m === 1 && d === 1) key = 'newyear';
+  else if(m === 2 && d === 14) key = 'valentine';
+  if(!key) return;
+  var sp = document.getElementById('holidaySplash');
+  var vid = document.getElementById('hsVideo');
+  var img = document.getElementById('hsPoster');
+  var sb = document.getElementById('hsSound');
+  if(!sp || !vid || !img || !sb) return;
+  var base = 'holiday-' + key;
+  img.src = base + '.jpg';
+  vid.poster = base + '.jpg';
+  vid.src = base + '.mp4';
+  var hsMuted = true;
+  vid.muted = true;
+  sp.classList.add('on');
+  try{ var p = vid.play(); if(p && p.catch) p.catch(function(){}); }catch(e){}
+  var gone = false;
+  function dismiss(){ if(gone) return; gone = true; try{ vid.pause(); }catch(e){} sp.classList.remove('on'); sp.style.display = 'none'; }
+  sp.addEventListener('click', dismiss);
+  sb.addEventListener('click', function(ev){
+    ev.stopPropagation();
+    hsMuted = !hsMuted;
+    vid.muted = hsMuted;
+    if(!hsMuted){ try{ var p2 = vid.play(); if(p2 && p2.catch) p2.catch(function(){}); }catch(e){} sb.textContent = '🔇 Sound off'; }
+    else sb.textContent = '🔊 Sound on';
+  });
+  setTimeout(dismiss, 12000);
 })();
 </script>
 </body>
