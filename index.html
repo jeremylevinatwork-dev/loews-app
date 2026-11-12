@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en" data-build="portal-20261112-0745">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Loews Hotels Security Orlando</title>
+<meta name="theme-color" content="#1a365d">
+<script>
+/* Portal self-update: if the server has a newer portal build, reload onto it once. Keys pb/pr are the portal's own. */
+(function(){ try{
+  var cur = document.documentElement.getAttribute('data-build'); if(!cur) return;
+  function pBuildCheck(){
+    fetch(location.pathname + '?pbv=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.text(); }).then(function(t){
+      var m = t.match(/data-build="(portal-[^"]+)"/); if(!m) return;
+      if(m[1] !== cur && sessionStorage.getItem('pb') !== m[1]){
+        var busy=false;
+        try{ var ae=document.activeElement; if(ae && /INPUT|TEXTAREA|SELECT/.test(ae.tagName)) busy=true; }catch(e){}
+        if(busy) return;
+        sessionStorage.setItem('pb', m[1]); sessionStorage.setItem('pr', '1'); location.reload();
+      }
+      else { sessionStorage.setItem('pb', cur); sessionStorage.removeItem('pr'); }
+    }).catch(function(){});
+  }
+  if(!(sessionStorage.getItem('pb') === cur && !sessionStorage.getItem('pr'))) pBuildCheck();
+  setInterval(pBuildCheck, 60000);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) pBuildCheck(); });
+}catch(e){} })();
+</script>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Loews Hotels Security Orlando">
+<link rel="manifest" href="loews-manifest.json">
+<style>
+:root{--gold:#d4af37;--navy:#1a365d;--blue:#2d4a7a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#0f2440;color:#222;min-height:100vh;min-height:100dvh;overflow:hidden;}
+
+/* ---------- login (matches previous design) ---------- */
+#uni-login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#0a1c33 0%,#14304f 58%,#1a365d 100%);z-index:9999;padding:16px;}
+.login-side-logo{width:min(440px,40vw);height:auto;margin-left:54px;filter:drop-shadow(0 10px 26px rgba(0,0,0,.35));}
+@media (max-width:820px){#uni-login{flex-direction:column;gap:22px}.login-side-logo{margin-left:0;width:min(250px,68vw)}}
+.uni-card{background:#fff;border-radius:10px;border-top:4px solid var(--gold);padding:34px 30px;max-width:420px;width:100%;box-shadow:0 18px 50px rgba(2,10,24,.45);text-align:center;}
+.uni-card h1{color:#1a365d;font-size:25px;font-weight:700;letter-spacing:.2px;margin:12px 0 4px;}
+.uni-card .sub{color:#5b6b80;font-size:14.5px;margin-bottom:20px;}
+.uni-card select,.uni-card input{width:100%;padding:12px;margin:8px 0;border:1.5px solid #c2cedd;border-radius:6px;font-size:17px;background:#fff;color:#222;}
+.uni-card select:focus,.uni-card input:focus{border-color:#1a365d;outline:none;box-shadow:0 0 0 3px rgba(26,54,93,.15);}
+.uni-card button{width:100%;padding:14px;margin-top:12px;background:#1a365d;color:#fff;border:none;border-radius:6px;font-size:17px;font-weight:700;letter-spacing:.4px;cursor:pointer;}
+.uni-card button:hover{background:#24497c;}
+.uni-err{color:#c53030;font-size:14.5px;min-height:18px;}
+.brand-power{font-family:Georgia,'Times New Roman',serif;font-weight:bold;color:#111;font-size:19px;margin:10px 0 2px;}
+.login-logo{display:block;margin:12px auto 6px;width:180px;max-width:62%;height:auto;}
+.brand-prod{position:fixed;left:12px;bottom:10px;color:rgba(255,255,255,.75);font-size:13.5px;z-index:9998;}
+
+/* ---------- app shell ---------- */
+#app-shell{display:none;height:100vh;height:100dvh;flex-direction:column;background:#0b1f3a;}
+#app-shell.on{display:flex;}
+.app-header{flex:0 0 auto;min-height:calc(54px + env(safe-area-inset-top));background:#0f2440;color:#fff;padding:env(safe-area-inset-top) 14px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
+.app-header h2{font-size:17px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;}
+.app-header .who{font-size:13px;opacity:.75;margin-left:8px;}
+.app-header .hleft{display:flex;align-items:center;min-width:0;}
+.app-header .hleft span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.app-header button{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.65);font-weight:700;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:15px;flex-shrink:0;}
+.app-header button:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+.tabpages{flex:1;position:relative;min-height:0;background:#fff;}
+.tabpage{position:absolute;inset:0;display:none;}
+.tabpage.active{display:block;}
+.tabpage iframe{width:100%;height:100%;border:0;display:block;background:#fff;}
+.emci-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin:0 auto 14px;max-width:860px;box-shadow:0 1px 4px rgba(15,36,64,.06);}
+.emci-card h2{margin:0 0 8px;font-size:18px;color:#1a365d;}
+.emci-note{color:#4a5568;font-size:13.5px;}
+.emci-chip{display:inline-block;background:#edf2f7;border-radius:999px;padding:3px 12px;margin:0 6px 6px 0;font-weight:700;font-size:13.5px;color:#2d3748;}
+.emci-rcard{border:1px solid #e2e8f0;border-radius:12px;padding:11px 13px;margin-bottom:10px;background:#fff;}
+.emci-rtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.emci-rid{font-size:17.5px;font-weight:800;color:#1a365d;white-space:nowrap;}
+.emci-pill{display:inline-block;padding:3px 11px;border-radius:999px;font-weight:800;font-size:12px;color:#fff;white-space:nowrap;margin:0 0 4px 4px;}
+.emci-rdet{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:7px 16px;margin-top:8px;}
+.emci-rdet .k{display:block;color:#718096;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:1px;}
+.emci-rdet .v{font-size:14.5px;color:#2d3748;}
+.emci-rnote{color:#4a5568;font-size:13.5px;margin-top:7px;}
+.emci-formline{background:#f7f3e3;border:1px solid #e8dcc0;border-radius:10px;padding:8px 12px;margin:8px 0 2px;font-size:14px;color:#2d3748;}
+.emci-refresh{background:#fff;border:1.5px solid #1a365d;color:#1a365d;border-radius:10px;padding:8px 16px;font-size:14px;font-weight:800;cursor:pointer;}
+@media print{ body>*{display:none !important;} body>#portalPrint{display:block !important;} }
+.vt-input{width:100%;box-sizing:border-box;padding:10px 12px;border:1.5px solid #cbd5e0;border-radius:9px;font-size:15.5px;margin:0 0 10px;background:#fff;color:#1a202c;}
+.vt-label{display:block;font-weight:800;color:#1a365d;font-size:13.5px;margin:0 0 4px;}
+.vt-did{white-space:pre-wrap;color:#2d3748;font-size:14.5px;line-height:1.45;}
+.ct-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin:0 auto 14px;max-width:860px;box-shadow:0 1px 4px rgba(15,36,64,.06);}
+.ct-card h2{margin:0 0 8px;font-size:18px;color:#1a365d;}
+.ct-note{color:#4a5568;font-size:13.5px;}
+.ct-shiphead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;}
+.ct-when{font-size:17px;font-weight:800;color:#1a365d;}
+.ct-pill{display:inline-block;padding:2px 10px;border-radius:999px;font-weight:800;font-size:12px;color:#fff;}
+.ct-fedex{background:#f7f3e3;border:1px solid #e8dcc0;border-radius:10px;padding:9px 12px;margin:10px 0;font-size:14.5px;color:#2d3748;}
+.ct-fedex a{color:#2b6cb0;font-weight:800;}
+.ct-tablewrap{overflow-x:auto;}
+.ct-table{width:100%;border-collapse:collapse;font-size:14px;}
+.ct-table th{text-align:left;color:#1a365d;border-bottom:2px solid #c9a227;padding:6px;font-size:12.5px;white-space:nowrap;}
+.ct-table td{border-bottom:1px solid #e2e8f0;padding:7px 6px;vertical-align:top;color:#2d3748;}
+.ct-recv{background:#e9f7ef;border:1.5px solid #9ae6b4;color:#276749;border-radius:10px;padding:10px 12px;font-weight:800;margin-top:10px;font-size:14.5px;}
+.tabbar{flex:0 0 auto;height:calc(76px + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;background:#fff;border-top:1px solid #d7dfe9;padding-bottom:env(safe-area-inset-bottom);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 -2px 10px rgba(15,36,64,.06);}
+.tabbar::-webkit-scrollbar{display:none;}
+.tabbar button{flex:0 0 auto;min-width:70px;height:100%;padding:3px 5px 4px;border:none;background:#fff;font-size:12px;letter-spacing:.1px;white-space:nowrap;overflow:hidden;font-weight:700;color:#64748b;cursor:pointer;border-top:3px solid transparent;margin-top:-3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+.tabbar button .ico{font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;width:42px;height:34px;}
+.tabbar button.active{color:#0f2440;border-top:3px solid var(--gold);background:#fff;}
+
+
+#greetbar{position:fixed;left:50%;transform:translate(-50%,-16px);top:calc(env(safe-area-inset-top, 0px) + 74px);z-index:9999;background:#14304f;color:#fff;border:1px solid rgba(212,175,55,.7);border-radius:999px;padding:11px 20px;font-size:16px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s ease;white-space:normal;text-align:center;line-height:1.3;max-width:92vw;}
+#greetbar.show{opacity:1;transform:translate(-50%,0);}
+
+#chatBadge{position:absolute;top:4px;right:calc(50% - 30px);min-width:21px;height:21px;padding:0 5px;border-radius:999px;background:#e53e3e;color:#fff;font-size:12px;font-weight:800;line-height:21px;text-align:center;display:none;box-shadow:0 2px 6px rgba(0,0,0,.3);z-index:5;}
+#chatBadge.on{display:block;}
+
+#msgalert{position:fixed;top:calc(env(safe-area-inset-top, 0px) + 10px);left:50%;transform:translate(-50%,-16px);width:min(480px,calc(100vw - 24px));background:#14304f;color:#fff;border:1px solid rgba(212,175,55,.7);border-radius:10px;padding:11px 14px;box-shadow:0 12px 32px rgba(0,0,0,.35);z-index:4000;opacity:0;pointer-events:none;transition:all .25s ease;cursor:pointer;}
+#msgalert.show{opacity:1;transform:translate(-50%,0);pointer-events:auto;}
+#msgalert-t{font-weight:800;font-size:15.5px;color:#f6e27a;}
+#msgalert-b{font-size:14.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#bellbtn{background:transparent;border:1.5px solid rgba(255,255,255,.65);border-radius:6px;font-size:16px;padding:5px 9px;cursor:pointer;}
+</style>
+</head>
+<body>
+<!-- ================= HOLIDAY SPLASH ================= -->
+<style>
+#holidaySplash{position:fixed;inset:0;z-index:9999;background:#000;display:none;}
+#holidaySplash.on{display:block;}
+#holidaySplash video,#holidaySplash img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+#hsTap{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.92);text-shadow:0 1px 8px rgba(0,0,0,.85);pointer-events:none;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+#hsSound{position:absolute;top:16px;right:16px;background:#C9A227;color:#0B2A4A;border:none;font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+</style>
+<div id="holidaySplash">
+  <img id="hsPoster" alt="">
+  <video id="hsVideo" playsinline loop muted preload="auto"></video>
+  <button id="hsSound" type="button">🔊 Sound on</button>
+  <div id="hsTap">Tap to enter</div>
+</div>
+
+<!-- ================= LOGIN ================= -->
+<div id="uni-login">
+  <div class="uni-card">
+    <div class="brand-power">Power by: NDL systems tech</div>
+    <img class="login-logo" src="data:image/jpeg;base64,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" alt="Loews Hotels &amp; Co">
+    <div style="text-align:center;margin:4px 0 8px"><span style="display:inline-block;background:#C9A227;color:#0B2A4A;font-weight:800;font-size:13px;letter-spacing:4px;padding:4px 16px 4px 20px;border-radius:999px">BETA</span></div>
+    <h1>Security Systems</h1>
+    <div class="sub">Team Login — Fobs · Cameras · Radios · Chat · Clients · Inspections</div>
+    <select id="uni-name">
+      <option value="">-- Select Your Name --</option>
+      <option value="Jeremy Levin">Jeremy Levin</option>
+      <option value="Alexander Duff">Alexander Duff</option>
+      <option value="Dominique Black">Dominique Black</option>
+      <option value="Sean Forester">Sean Forester</option>
+      <option value="Justin Messenger">Justin Messenger</option>
+    </select>
+    <input type="password" id="uni-pin" placeholder="Enter Team PIN" inputmode="numeric" autocomplete="off">
+    <div class="uni-err" id="uni-err"></div>
+    <button onclick="uniLogin()">Log in</button>
+  </div>
+  <img class="login-side-logo" src="sectech-logo.png" alt="Loews Hotels — Security Systems &amp; Technology">
+</div>
+<div class="brand-prod">Produced by: JHNL Security Tech</div>
+
+<!-- ================= APP SHELL ================= -->
+<div id="app-shell">
+<div id="greetbar" role="status"></div>
+<div id="msgalert" onclick="msgAlertTap()"><div id="msgalert-t"></div><div id="msgalert-b"></div></div>
+<div id="updatebanner" role="status" style="background:linear-gradient(90deg,#d4af37,#b8912a);color:#1a365d;text-align:center;font-weight:800;font-size:15px;letter-spacing:.5px;padding:9px 10px;">⚠️ Be aware of updates</div>
+  <div class="app-header">
+    <div class="hleft"><h2>Loews Security</h2><span class="who" id="whoami"></span><span id="buildtag" style="font-size:9px;opacity:.5;font-weight:600;margin-left:6px"></span></div>
+    <button id="bellbtn" onclick="enablePhoneAlerts()" title="Phone notifications for chat" style="margin-right:8px">🔕</button><button id="padFab" onclick="openPad()" title="Notes Pad" aria-label="Open notes pad" style="margin-right:8px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#d4af37,#b8912a);border:none;font-size:19px;line-height:1;cursor:pointer;flex:0 0 auto;">✏️</button><button onclick="uniLogout()">Log out</button>
+  </div>
+  <div class="tabpages">
+    <div class="tabpage active" id="page-fobs"><iframe id="frame-fobs" title="Secure Alert — Fobs" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-cams"><iframe id="frame-cams" title="Camera Tracking" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-radio"><iframe id="frame-radio" title="Radio Tracking" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-chat"><iframe id="frame-chat" title="Team Chat" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-clients"><iframe id="frame-clients" title="Client Portal" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-contractor"><div id="contractorView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
+    <div class="tabpage" id="page-emci"><div id="emciView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
+    <div class="tabpage" id="page-visits"><div id="visitsView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
+    <div class="tabpage" id="page-fedex"><div id="fedexView" style="height:100%;overflow:auto;background:#eef1f5;padding:14px 12px 40px;"></div></div>
+    <div class="tabpage" id="page-inspect"><iframe id="frame-inspect" title="Daily Inspections" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-packages"><iframe id="frame-packages" title="Package Tracking" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-parking"><iframe id="frame-parking" title="Parking Tickets" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-keys"><iframe id="frame-keys" title="Door Locks & Keys" allow="camera; microphone; geolocation; web-share" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals"></iframe></div>
+    <div class="tabpage" id="page-drive"><div style="height:100%;overflow:auto;background:#0f2440;color:#fff;padding:18px 16px 30px;">
+      <div style="font-size:15px;letter-spacing:2px;color:#c9a227;font-weight:700;">&#128663; DRIVE VIEW &mdash; LOOK, DON'T TOUCH</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+        <div onclick="switchTab('fobs')" style="cursor:pointer;background:#16324f;border:2px solid #c9a227;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvFobs" style="font-size:64px;font-weight:800;line-height:1;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">FOBS</div></div>
+        <div onclick="switchTab('fobs')" style="cursor:pointer;background:#16324f;border:2px solid #e53e3e;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvAttn" style="font-size:64px;font-weight:800;line-height:1;color:#fc8181;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">NEED ATTENTION</div></div>
+        <div onclick="switchTab('fobs')" style="cursor:pointer;background:#16324f;border:2px solid #2b6cb0;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvSub" style="font-size:64px;font-weight:800;line-height:1;color:#90cdf4;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">&#10003; SUBMITTED</div></div>
+        <div onclick="switchTab('cams')" style="cursor:pointer;background:#16324f;border:2px solid #4a5568;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvCams" style="font-size:64px;font-weight:800;line-height:1;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">CAMERAS</div></div>
+        <div onclick="switchTab('cams')" style="cursor:pointer;background:#16324f;border:2px solid #e53e3e;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvCamOff" style="font-size:64px;font-weight:800;line-height:1;color:#fc8181;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">CAMERAS DOWN</div></div>
+        <div onclick="switchTab('radio')" style="cursor:pointer;background:#16324f;border:2px solid #2f855a;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvRadioField" style="font-size:64px;font-weight:800;line-height:1;color:#9ae6b4;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">RADIOS</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+        <div onclick="switchTab('fobs')" style="cursor:pointer;background:#16324f;border:2px solid #dd6b20;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvUnplugged" style="font-size:64px;font-weight:800;line-height:1;color:#fbd38d;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">UNPLUGGED</div></div>
+        <div onclick="switchTab('fobs')" style="cursor:pointer;background:#16324f;border:2px solid #319795;border-radius:16px;padding:18px 10px;text-align:center;"><div id="dvBattTested" style="font-size:64px;font-weight:800;line-height:1;color:#81e6d9;">&ndash;</div><div style="font-size:19px;color:#cbd5e0;margin-top:6px;">BATTERY TESTED</div></div>
+      </div>
+      <div id="dvTime" style="text-align:center;color:#a0aec0;margin-top:16px;font-size:15px;"></div>
+      <div style="text-align:center;color:#718096;font-size:13.5px;margin-top:4px;">Tap a tile to look &mdash; changes happen in the tabs. Radios in field: <span id="dvRadios">&ndash;</span></div>
+    </div></div>
+  </div>
+  <div id="padOverlay" style="display:none;position:fixed;inset:0;background:#f4f6fa;z-index:200;flex-direction:column;">
+    <div style="background:#1a365d;color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;display:flex;align-items:center;gap:10px;">
+      <div style="font-size:19px;font-weight:800;flex:1;">✏️ Notes Pad</div>
+      <button onclick="closePad()" style="background:#d4af37;color:#12263f;border:none;border-radius:8px;padding:9px 16px;font-size:15px;font-weight:800;cursor:pointer;">Done</button>
+    </div>
+    <div id="padThumbs" style="display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#e8edf4;flex:0 0 auto;"></div>
+    <div id="padDrawWrap" style="flex:1;display:flex;flex-direction:column;padding:10px 12px;gap:8px;min-height:0;">
+      <canvas id="padCv" style="flex:1;width:100%;background:#fff;border:2px solid #1a365d;border-radius:12px;touch-action:none;min-height:0;"></canvas>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="newPadPage()" style="padding:11px 14px;background:#1a365d;color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;">＋ New page</button>
+        <button onclick="undoPad()" style="padding:11px 14px;background:#fff;color:#1a365d;border:1.5px solid #1a365d;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;">↩ Undo</button>
+        <button onclick="clearPad()" style="padding:11px 14px;background:#fff;color:#b02a2a;border:1.5px solid #b02a2a;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;">Clear</button>
+        <button onclick="savePadNote()" style="flex:1;padding:11px 14px;background:#0a7d2c;color:#fff;border:none;border-radius:9px;font-size:16px;font-weight:800;cursor:pointer;">💾 Save note</button>
+      </div>
+      <button onclick="closePad()" style="width:100%;padding:13px;background:#1a365d;color:#fff;border:none;border-radius:9px;font-size:16.5px;font-weight:800;cursor:pointer;margin-bottom:env(safe-area-inset-bottom);">Done — close pad</button>
+    </div>
+    <div id="padViewWrap" style="display:none;flex:1;flex-direction:column;padding:10px 12px;gap:8px;min-height:0;">
+      <img id="padViewImg" style="flex:1;width:100%;object-fit:contain;background:#fff;border:2px solid #1a365d;border-radius:12px;min-height:0;">
+      <div id="padViewMeta" style="color:#445;font-size:14.5px;text-align:center;"></div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="newPadPage()" style="flex:1;padding:11px 14px;background:#1a365d;color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;">＋ New page</button>
+        <button onclick="emailPadNote()" style="padding:11px 14px;background:#d4af37;color:#12263f;border:none;border-radius:9px;font-size:15px;font-weight:800;cursor:pointer;">📧 Email</button>
+        <button onclick="deletePadNote()" style="padding:11px 14px;background:#fff;color:#b02a2a;border:1.5px solid #b02a2a;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;">🗑 Delete</button>
+      </div>
+      <button onclick="closePad()" style="width:100%;padding:13px;background:#1a365d;color:#fff;border:none;border-radius:9px;font-size:16.5px;font-weight:800;cursor:pointer;margin-bottom:env(safe-area-inset-bottom);">Done — close pad</button>
+    </div>
+  </div>
+  <div class="tabbar">
+    <button data-tab="fobs" class="active" onclick="switchTab('fobs')"><span class="ico">🔐</span>Fobs</button>
+    <button data-tab="cams" onclick="switchTab('cams')"><span class="ico">📷</span>Cameras</button>
+    <button data-tab="radio" onclick="switchTab('radio')"><span class="ico">📻</span>Radios</button>
+    <button data-tab="chat" onclick="switchTab('chat')" style="position:relative"><span class="ico">💬</span>Chat<span id="chatBadge"></span></button>
+    <button data-tab="clients" onclick="switchTab('clients')"><span class="ico">🏨</span>Clients</button>
+    <button data-tab="contractor" data-owneronly="1" onclick="switchTab('contractor')"><span class="ico">🚚</span>Contractor</button>
+    <button data-tab="emci" data-owneronly="1" onclick="switchTab('emci')"><span class="ico">🔧</span>EMCI</button>
+    <button data-tab="packages" data-owneronly="1" onclick="switchTab('packages')"><span class="ico">📦</span>Packages</button>
+    <button data-tab="parking" data-owneronly="1" onclick="switchTab('parking')"><span class="ico">🅿️</span>Parking</button>
+    <button data-tab="inspect" onclick="switchTab('inspect')"><span class="ico">📋</span>Inspect</button>
+    <button data-tab="keys" data-keys3="1" onclick="switchTab('keys')"><span class="ico">🔑</span>Keys</button>
+    <button data-tab="drive" onclick="switchTab('drive')"><span class="ico">🚗</span>Drive</button>
+    <button data-tab="visits" onclick="switchTab('visits')"><span class="ico">🧾</span>Visits</button>
+    <button data-tab="fedex" onclick="switchTab('fedex')"><span class="ico">🚛</span>FedEx</button>
+  </div>
+</div>
+<div id="portalPrint" style="display:none"></div>
+
+<script>
+var TEAM_PINS = {
+  "Jeremy Levin": "1245",
+  "Alexander Duff": "0132",
+  "Dominique Black": "2195",
+  "Sean Forester": "3867",
+  "Justin Messenger": "5132"
+};
+var APP_URLS = {
+  fobs:  "https://jeremylevinatwork-dev.github.io/secure-alert/",
+  cams:  "https://jeremylevinatwork-dev.github.io/camera-tracking/",
+  radio: "https://jeremylevinatwork-dev.github.io/radio-tracking/",
+  chat:  "https://jeremylevinatwork-dev.github.io/team-chat/",
+  clients: "https://jeremylevinatwork-dev.github.io/secure-alert-customer/",
+  contractor: "https://jeremylevinatwork-dev.github.io/secure-alert-contractor/",
+  emci: "https://jeremylevinatwork-dev.github.io/emci-portal/",
+  inspect: "https://jeremylevinatwork-dev.github.io/daily-inspections/",
+  packages: "https://jeremylevinatwork-dev.github.io/package-tracking/",
+  parking: "https://jeremylevinatwork-dev.github.io/parking-tickets/",
+  keys: "https://jeremylevinatwork-dev.github.io/keys-investigation/"
+};
+var loadedTabs = {};
+
+var SSO_USER = '';
+function ssoName(){
+  if(SSO_USER) return SSO_USER;
+  try{ return localStorage.getItem('loewsUser') || ''; }catch(e){ return ''; }
+}
+function ssoAuthed(){
+  if(SSO_USER) return true;
+  try{ return localStorage.getItem('loewsAuth') === '1' && !!localStorage.getItem('loewsUser'); }catch(e){ return false; }
+}
+function writeSSO(name){
+  SSO_USER = name;
+  try{
+    localStorage.setItem('loewsAuth','1');
+    localStorage.setItem('loewsUser', name);
+  }catch(e){}
+}
+
+var padNotes = [], padStrokes = [], padCtx = null, padLast = null, padViewId = null;
+function padMe(){ return ssoName(); }
+function padHdr(){ return {apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY}; }
+async function padLoad(){
+  try{ var c = JSON.parse(localStorage.getItem('loewsPadNotes') || '[]'); if(Array.isArray(c)) padNotes = c; }catch(e){}
+  try{
+    var r = await fetch(CHAT_SB + '/rest/v1/app_records?id=eq.notes-pad&select=data', {headers: padHdr()});
+    var rows = await r.json();
+    var cloud = (rows && rows[0] && rows[0].data && rows[0].data.notes) || null;
+    if(Array.isArray(cloud)){
+      var byId = {}; padNotes.forEach(function(n){ byId[n.id] = n; });
+      cloud.forEach(function(n){ byId[n.id] = n; });
+      padNotes = Object.keys(byId).map(function(k){ return byId[k]; }).sort(function(a, b){ return b.ts - a.ts; });
+    }
+  }catch(e){}
+  padRenderThumbs();
+}
+async function padPush(){
+  try{ localStorage.setItem('loewsPadNotes', JSON.stringify(padNotes)); }catch(e){}
+  try{
+    await fetch(CHAT_SB + '/rest/v1/app_records', {method: 'POST', headers: Object.assign(padHdr(), {'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'}), body: JSON.stringify({id: 'notes-pad', app: 'portal', data: {notes: padNotes, _ts: Date.now()}, updated_at: new Date().toISOString()})});
+  }catch(e){}
+}
+function padRenderThumbs(){
+  var el = document.getElementById('padThumbs'); if(!el) return;
+  if(!padNotes.length){ el.innerHTML = '<div style="color:#5b6b80;font-size:14.5px;padding:4px 2px;">No saved notes yet \u2014 write below and tap Save note.</div>'; return; }
+  el.innerHTML = padNotes.map(function(n){
+    var d = new Date(n.ts);
+    var lbl = (d.getMonth() + 1) + '/' + d.getDate() + ' ' + d.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
+    return '<div onclick="padView(\'' + n.id + '\')" style="flex:0 0 auto;cursor:pointer;text-align:center;">'
+      + '<img src="' + n.img + '" style="width:86px;height:56px;object-fit:cover;background:#fff;border:2px solid ' + (padViewId === n.id ? '#d4af37' : '#b9c4d4') + ';border-radius:8px;display:block;">'
+      + '<div style="font-size:11.5px;color:#445;margin-top:2px;">' + lbl + '</div></div>';
+  }).join('');
+}
+function openPad(){
+  document.getElementById('padOverlay').style.display = 'flex';
+  padLoad();
+  newPadPage();
+}
+function closePad(){ document.getElementById('padOverlay').style.display = 'none'; }
+function newPadPage(){
+  padViewId = null;
+  document.getElementById('padViewWrap').style.display = 'none';
+  document.getElementById('padDrawWrap').style.display = 'flex';
+  padStrokes = [];
+  requestAnimationFrame(function(){ padSetupCanvas(); padRedraw(); padRenderThumbs(); });
+}
+function padSetupCanvas(){
+  var cv = document.getElementById('padCv'); if(!cv) return;
+  var dpr = window.devicePixelRatio || 1;
+  var rect = cv.getBoundingClientRect();
+  cv.width = Math.max(320, Math.round(rect.width * dpr));
+  cv.height = Math.max(240, Math.round(rect.height * dpr));
+  try{
+    padCtx = cv.getContext('2d');
+    padCtx.scale(dpr, dpr);
+    padCtx.lineCap = 'round'; padCtx.lineJoin = 'round';
+    padCtx.strokeStyle = '#12294d';
+  }catch(e){ padCtx = null; }
+  if(!padCtx || cv._padBound) return;
+  cv._padBound = true;
+  var pos = function(e){ var r = cv.getBoundingClientRect(); return {x: e.clientX - r.left, y: e.clientY - r.top}; };
+  cv.addEventListener('pointerdown', function(e){ e.preventDefault(); try{ cv.setPointerCapture(e.pointerId); }catch(err){} padLast = pos(e); padStrokes.push([padLast]); });
+  cv.addEventListener('pointermove', function(e){
+    if(!padLast || !(e.buttons || e.pressure > 0)) return;
+    e.preventDefault();
+    var pt = pos(e);
+    var cur = padStrokes[padStrokes.length - 1];
+    if(cur) cur.push(pt);
+    padStrokeSegment(padLast, pt, e);
+    padLast = pt;
+  });
+  var end = function(){ padLast = null; };
+  cv.addEventListener('pointerup', end);
+  cv.addEventListener('pointercancel', end);
+}
+function padStrokeSegment(a, b, e){
+  if(!padCtx) return;
+  padCtx.lineWidth = (e && e.pointerType === 'pen') ? (1.5 + (e.pressure || 0.5) * 2.4) : 2.6;
+  var mid = {x: (a.x + b.x) / 2, y: (a.y + b.y) / 2};
+  padCtx.beginPath();
+  padCtx.moveTo(a.x, a.y);
+  padCtx.quadraticCurveTo(a.x, a.y, mid.x, mid.y);
+  padCtx.lineTo(b.x, b.y);
+  padCtx.stroke();
+}
+function padRedraw(){
+  var cv = document.getElementById('padCv'); if(!cv || !padCtx) return;
+  var rect = cv.getBoundingClientRect();
+  padCtx.fillStyle = '#ffffff';
+  padCtx.fillRect(0, 0, rect.width, rect.height);
+  padStrokes.forEach(function(st){
+    for(var i = 1; i < st.length; i++) padStrokeSegment(st[i - 1], st[i], null);
+  });
+}
+function undoPad(){ padStrokes.pop(); padRedraw(); }
+function clearPad(){ padStrokes = []; padRedraw(); }
+function savePadNote(){
+  if(!padStrokes.length){ alert('The page is blank \u2014 write something first.'); return; }
+  var cv = document.getElementById('padCv');
+  var img = '';
+  try{ img = cv.toDataURL('image/jpeg', 0.85); }catch(e){}
+  if(!img){ alert('Could not save that page \u2014 try again.'); return; }
+  var note = {id: 'note-' + Date.now().toString(36), ts: Date.now(), by: padMe(), img: img};
+  padNotes.unshift(note);
+  padPush();
+  padView(note.id);
+}
+function padView(id){
+  var n = padNotes.find(function(x){ return x.id === id; });
+  if(!n) return;
+  padViewId = id;
+  document.getElementById('padDrawWrap').style.display = 'none';
+  document.getElementById('padViewWrap').style.display = 'flex';
+  document.getElementById('padViewImg').src = n.img;
+  var d = new Date(n.ts);
+  document.getElementById('padViewMeta').textContent = d.toLocaleString() + (n.by ? ' \u00B7 ' + n.by : '');
+  padRenderThumbs();
+}
+async function emailPadNote(){
+  var n = padNotes.find(function(x){ return x.id === padViewId; });
+  if(!n) return;
+  var d = new Date(n.ts);
+  var fname = 'note-' + d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') + '.jpg';
+  var subj = 'Handwritten note \u2014 ' + d.toLocaleString() + (n.by ? ' \u00B7 ' + n.by : '');
+  try{
+    var blob = await (await fetch(n.img)).blob();
+    var file = new File([blob], fname, {type: 'image/jpeg'});
+    if(navigator.canShare && navigator.canShare({files: [file]})){
+      await navigator.share({files: [file], title: subj});
+      return;
+    }
+    if(navigator.share){ await navigator.share({title: subj, text: subj}); return; }
+  }catch(e){ if(e && e.name === 'AbortError') return; }
+  var a = document.createElement('a');
+  a.href = n.img; a.download = fname;
+  document.body.appendChild(a); a.click(); a.remove();
+  window.location.href = 'mailto:?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(subj + '\n\n(The note picture was just saved to this device \u2014 attach it to this email.)');
+}
+function deletePadNote(){
+  var n = padNotes.find(function(x){ return x.id === padViewId; });
+  if(!n) return;
+  if(!(n.by === padMe() || padMe() === 'Jeremy Levin')){ alert('Only the person who wrote this note (or Jeremy) can delete it.'); return; }
+  if(!confirm('Delete this note?')) return;
+  padNotes = padNotes.filter(function(x){ return x.id !== padViewId; });
+  padPush();
+  newPadPage();
+}
+
+var _driveTimer = null;
+function driveRow(id){
+  return fetch(CHAT_SB + '/rest/v1/app_records?id=eq.' + id + '&select=data', {headers:{apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY}})
+    .then(function(r){ return r.json(); })
+    .then(function(rows){ return (rows && rows[0] && rows[0].data) || {}; })
+    .catch(function(){ return {}; });
+}
+function driveSet(id, v){ var e = document.getElementById(id); if(e) e.textContent = v; }
+function driveRefresh(){
+  driveRow('secure-alert-state').then(function(d){
+    var fobs = Array.isArray(d.fobs) ? d.fobs : [];
+    var out = fobs.filter(function(f){ return f.sentToVendor && (f.also || []).indexOf('Not Under Warranty 1 Year') < 0; }).length;
+    driveSet('dvFobs', fobs.length - out);
+    driveSet('dvAttn', fobs.filter(function(f){ return ['In Repair','Broken','Warranty','Lost'].indexOf(f.status) >= 0; }).length);
+    driveSet('dvSub', out);
+    var bcs = Array.isArray(d.beacons) ? d.beacons : [];
+    var dn = new Date(); var todayStr = dn.getFullYear() + '-' + String(dn.getMonth() + 1).padStart(2, '0') + '-' + String(dn.getDate()).padStart(2, '0');
+    driveSet('dvUnplugged', bcs.filter(function(b){ return b.status === 'Unplugged'; }).length);
+    driveSet('dvBattTested', bcs.filter(function(b){ return String(b.battDate || '').slice(0, 10) === todayStr; }).length);
+  });
+  driveRow('camera-state').then(function(d){
+    var cams = Array.isArray(d.cameras) ? d.cameras : [];
+    driveSet('dvCams', cams.length);
+    driveSet('dvCamOff', cams.filter(function(c){ var s = (c.status || '').toLowerCase(); return s.indexOf('offline') >= 0 || s.indexOf('server') >= 0 || s.indexOf('broken') >= 0; }).length);
+  });
+  driveRow('radio-state').then(function(d){
+    var rs = Array.isArray(d.radios) ? d.radios : [];
+    driveSet('dvRadios', rs.filter(function(r){ return r.status === 'In Field'; }).length);
+    driveSet('dvRadioField', rs.length);
+  });
+  var t = document.getElementById('dvTime'); if(t) t.textContent = 'Updated ' + new Date().toLocaleTimeString();
+  if(!_driveTimer) _driveTimer = setInterval(function(){ var pg = document.getElementById('page-drive'); if(pg && pg.classList.contains('active')) driveRefresh(); }, 30000);
+}
+
+/* ---------- Contractor view (native — Secure Alert shipments, built into the portal) ---------- */
+function ctEsc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function ctFmtDT(s){ if(!s) return '—'; var d = new Date(s); return isNaN(d) ? ctEsc(s) : d.toLocaleString('en-US', {month:'numeric', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}); }
+function renderContractorView(){
+  var box = document.getElementById('contractorView'); if(!box) return;
+  box.innerHTML = '<div class="ct-card"><div class="ct-note">Loading Secure Alert shipments…</div></div>';
+  driveRow('secure-alert-state').then(function(d){
+    var fobs = Array.isArray(d.fobs) ? d.fobs : [];
+    var pn = d.propNames || {};
+    function propName(c){ return pn[c] || c; }
+    function fobTable(list, shippedStr){
+      var h = '<div class="ct-tablewrap"><table class="ct-table"><tr><th>FOB ID</th><th>Fob number</th><th>Repair request</th><th>Shipped out</th></tr>';
+      list.slice().sort(function(a, b){ return String(a.fobId).localeCompare(String(b.fobId)); }).forEach(function(f){
+        h += '<tr><td><b>' + ctEsc(f.fobId) + '</b></td><td>' + ctEsc(f.num || '—') + '</td><td>' + ctEsc(f.sentWhen || '—') + '</td><td>' + ctEsc(shippedStr) + '</td></tr>';
+      });
+      return h + '</table></div>';
+    }
+    function shipCard(o){
+      var hotels = Array.from(new Set(o.fobs.map(function(f){ return propName(f.prop); }))).join(', ');
+      var tickets = Array.from(new Set(o.fobs.map(function(f){ return f.sentRpt; }).filter(Boolean)));
+      var h = '<div class="ct-card">';
+      h += '<div class="ct-shiphead"><span class="ct-when">' + (o.fin ? '\uD83D\uDE9A Shipped ' + ctEsc(ctFmtDT(o.when)) : '\uD83D\uDCE6 Being prepared') + '</span><span class="ct-pill" style="background:' + (o.fin ? '#276749' : '#B7791F') + '">' + (o.fin ? '\u2713 FINALIZED' : 'BEING PREPARED') + '</span></div>';
+      h += '<div class="ct-note" style="margin:4px 0 2px;">' + ctEsc(hotels) + (tickets.length ? ' \u00B7 Ticket ' + ctEsc(tickets.join(', ')) : '') + '</div>';
+      if(o.tracking) h += '<div class="ct-fedex">FedEx tracking: <a href="https://www.fedex.com/fedextrack/?trknbr=' + encodeURIComponent(o.tracking) + '" target="_blank" rel="noopener">' + ctEsc(o.tracking) + '</a></div>';
+      else if(o.fin) h += '<div class="ct-fedex">FedEx tracking number to come.</div>';
+      if(o.fobs.length) h += fobTable(o.fobs, o.fin ? ctFmtDT(o.when) : '—');
+      else h += '<div class="ct-note" style="text-align:center;padding:12px 6px;">Fobs are being packed \u2014 the list will appear here.</div>';
+      var received = o.fobs.find(function(f){ return f.receivedAt; });
+      if(o.fin){
+        if(received) h += '<div class="ct-recv">\u2713 Shipment received ' + ctEsc(ctFmtDT(received.receivedAt)) + (received.receivedBy ? ' \u2014 marked by ' + ctEsc(received.receivedBy) : '') + '</div>';
+        else h += '<div class="ct-note" style="margin-top:10px;">Not yet marked received by SecurAlert.</div>';
+      } else {
+        h += '<div class="ct-note" style="margin-top:10px;">This shipment is being prepared \u2014 it has not shipped yet.</div>';
+      }
+      return h + '</div>';
+    }
+    var groups = [];
+    var ships = (Array.isArray(d.shipments) ? d.shipments : []).slice().sort(function(a, b){ return a.status === b.status ? String(b.createdAt || '').localeCompare(String(a.createdAt || '')) : (a.status === 'preparing' ? -1 : 1); });
+    ships.forEach(function(sh){
+      var fs = fobs.filter(function(f){ return f.shipId === sh.uid; });
+      if(!fs.length && sh.status !== 'preparing') return;
+      groups.push({ fin: sh.status === 'finalized', when: sh.finalizedAt || '', tracking: sh.tracking || '', fobs: fs });
+    });
+    var byTrack = {};
+    fobs.forEach(function(f){ if(f.shipTracking && !f.shipId){ var k = String(f.shipTracking).trim(); (byTrack[k] = byTrack[k] || []).push(f); } });
+    Object.keys(byTrack).map(function(k){
+      var g = byTrack[k];
+      var when = g.map(function(f){ return f.shipWhen || ''; }).sort().slice(-1)[0];
+      return { fin: true, when: when, tracking: k, fobs: g };
+    }).sort(function(a, b){ return String(b.when).localeCompare(String(a.when)); }).forEach(function(g){ groups.push(g); });
+    var h = '<div class="ct-card"><h2>Secure Alert shipments</h2><p class="ct-note" style="margin:0 0 8px;">This is SecurAlert\u2019s live view \u2014 the same shipments the contractor portal shows them.</p><button class="emci-refresh" onclick="renderContractorView()">\u21bb Refresh</button></div>';
+    if(!groups.length) h += '<div class="ct-card"><div class="ct-note" style="text-align:center;padding:16px 8px;">No shipments yet.<br>When fobs ship to SecurAlert, they will appear here.</div></div>';
+    groups.forEach(function(g){ h += shipCard(g); });
+    box.innerHTML = h;
+  }).catch(function(){
+    box.innerHTML = '<div class="ct-card"><div class="ct-note">Could not load the shipments \u2014 check connection and tap the Contractor tab again.</div></div>';
+  });
+}
+
+/* ---------- EMCI view (native — same live queue EMCI sees, built into the portal) ---------- */
+var EMCI_GROUPS = [
+  { title:'🔧 In repair with EMCI', statuses:['Sent to EMCI','Radio is with EMCI','In Repair'] },
+  { title:'⏸ On hold for EMCI', statuses:['On hold for EMCI','Waiting on EMCI'] }
+];
+var EMCI_ROWS = [];
+var EMCI_PILLS = { 'In Repair':'#B7791F', 'Sent to EMCI':'#2B6CB0', 'Radio is with EMCI':'#2B6CB0', 'On hold for EMCI':'#6B46C1', 'Waiting on EMCI':'#6B46C1' };
+var EMCI_PROP = {PBH:'Loews Portofino Bay Hotel', HRH:'Hard Rock Hotel', RPR:'Loews Royal Pacific Resort', SFR:'Loews Sapphire Falls Resort', AVH:'Universal Aventura Hotel', AVA:'Universal Aventura Hotel', CBBR:'Universal Cabana Bay Beach Resort', ESS:"Universal's Endless Summer Resort - Surfside", ESD:"Universal's Endless Summer Resort - Dockside", SNR:'Universal Stella Nova Resort', TLR:'Universal Terra Luna Resort', HGH:'Universal Helios Grand Hotel', LKW:'Lakewood', LKWD:'Lakewood'};
+function emciEsc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function emciFmtDT(s){ if(!s) return '—'; var d = new Date(s); return isNaN(d) ? emciEsc(s) : d.toLocaleString('en-US', {month:'numeric', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}); }
+function renderEmciView(){
+  var box = document.getElementById('emciView'); if(!box) return;
+  box.innerHTML = '<div class="emci-card"><div class="emci-note">Loading the EMCI queue…</div></div>';
+  driveRow('radio-state').then(function(d){
+    var radios = Array.isArray(d.radios) ? d.radios : [];
+    var forms = Array.isArray(d.emciForms) ? d.emciForms : [];
+    var pn = d.propNames || {};
+    function propName(c){ return pn[c] || EMCI_PROP[c] || c; }
+    function toks(r){ return String(r.status || '').split(',').map(function(x){ return x.trim(); }).filter(Boolean); }
+    function since(r, g){
+      var hist = (r.hist || []).slice().reverse();
+      for(var i = 0; i < hist.length; i++){ var e = (hist[i] && hist[i].e) || ''; for(var j = 0; j < g.statuses.length; j++){ if(e.indexOf(g.statuses[j]) >= 0) return hist[i].t; } }
+      return r.repairSince || '';
+    }
+    function formFor(r){
+      var best = null;
+      forms.forEach(function(f){ if(f.radio && f.radio.radioId === r.radioId){ if(!best || String(f.ts || '') > String(best.ts || '')) best = f; } });
+      return best;
+    }
+    EMCI_ROWS = [];
+    var per = EMCI_GROUPS.map(function(g){ return { g: g, list: radios.filter(function(r){ var t = toks(r); return g.statuses.some(function(st){ return t.indexOf(st) >= 0; }); }).sort(function(a, b){ return String(a.radioId).localeCompare(String(b.radioId)); }) }; });
+    var total = per.reduce(function(n, x){ return n + x.list.length; }, 0);
+    var h = '<div class="emci-card"><h2>' + total + ' radio' + (total === 1 ? '' : 's') + ' in the EMCI queue</h2>'
+      + '<p class="emci-note" style="margin:0 0 8px;">' + per.map(function(x){ return '<span class="emci-chip">' + x.g.title + ': ' + x.list.length + '</span>'; }).join('') + '<br>This is EMCI\u2019s live view \u2014 repair radios only, straight from the Radio app data.</p>'
+      + '<button class="emci-refresh" onclick="renderEmciView()">\u21bb Refresh</button> <button class="emci-refresh" onclick="printEmciList()">\uD83D\uDDA8 Print list</button>' + (ssoName() === 'Jeremy Levin' ? ' <button class="emci-refresh" onclick="emailEmciList()">\u2709 Email list</button>' : '') + '</div>';
+    if(!total) h += '<div class="emci-card"><div class="emci-note" style="text-align:center;padding:16px 8px;">No radios in the EMCI queue right now.</div></div>';
+    per.forEach(function(x){
+      if(!x.list.length) return;
+      h += '<div class="emci-card"><h2>' + x.g.title + ' (' + x.list.length + ')</h2>';
+      x.list.forEach(function(r){
+        var t = toks(r);
+        var pills = t.filter(function(s){ return EMCI_PILLS[s]; }).map(function(s){ return '<span class="emci-pill" style="background:' + EMCI_PILLS[s] + '">' + emciEsc(s) + '</span>'; }).join('');
+        var extra = t.filter(function(s){ return !EMCI_PILLS[s]; });
+        h += '<div class="emci-rcard"><div class="emci-rtop"><span class="emci-rid">\uD83D\uDCFB ' + emciEsc(r.radioId || '—') + '</span><span>' + pills + '</span></div>'
+          + '<div class="emci-rdet">'
+          + '<div><span class="k">Serial</span><span class="v">' + emciEsc(r.serial || '—') + '</span></div>'
+          + '<div><span class="k">Model</span><span class="v">' + emciEsc(r.model || '—') + '</span></div>'
+          + '<div><span class="k">Hotel</span><span class="v">' + emciEsc(propName(r.prop)) + '</span></div>'
+          + '<div><span class="k">Dept</span><span class="v">' + emciEsc(r.dept || '—') + '</span></div>'
+          + '<div><span class="k">Since</span><span class="v">' + emciEsc(emciFmtDT(since(r, x.g))) + '</span></div>'
+          + '</div>';
+        if(extra.length) h += '<div class="emci-rnote">Also: ' + emciEsc(extra.join(', ')) + '</div>';
+        var why = [r.repairReason ? 'Reason: ' + r.repairReason : '', r.missingParts ? 'Missing: ' + r.missingParts + (r.missingQty ? ' (' + r.missingQty + ')' : '') : ''].filter(Boolean).join(' \u00B7 ');
+        var form = formFor(r);
+        var fline = form ? ['Repair form on file', (form.vals && form.vals.reasons && form.vals.reasons.length) ? 'Reasons: ' + form.vals.reasons.join(', ') : '', (form.vals && form.vals.parts && form.vals.parts.length) ? 'Parts: ' + form.vals.parts.join(', ') : ''].filter(Boolean).join(' \u00B7 ') : '';
+        EMCI_ROWS.push({group: x.g.title, id: r.radioId || '\u2014', serial: r.serial || '\u2014', model: r.model || '\u2014', hotel: propName(r.prop), dept: r.dept || '\u2014', status: t.filter(function(s){ return EMCI_PILLS[s]; }).join(', ') || t.join(', '), also: extra.join(', '), since: emciFmtDT(since(r, x.g)), reason: why});
+        if(why) h += '<div class="emci-rnote">' + emciEsc(why) + '</div>';
+        if(fline) h += '<div class="emci-formline">\uD83D\uDCC4 ' + emciEsc(fline) + '</div>';
+        h += '</div>';
+      });
+      h += '</div>';
+    });
+    box.innerHTML = h;
+  }).catch(function(){
+    box.innerHTML = '<div class="emci-card"><div class="emci-note">Could not load the EMCI queue \u2014 check connection and tap the EMCI tab again.</div></div>';
+  });
+}
+
+/* ---------- shared one-tap mail + print for the portal lists ---------- */
+var EJ_SERVICE_P = 'service_ylmlcxh', EJ_KEY_P = 'YCkjMTWq2fP_OHNis', EJ_TEMPLATE_P = 'template_kocoa4d';
+function portalMail(to, subject, body){
+  return fetch('https://api.emailjs.com/api/v1.0/email/send', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({service_id: EJ_SERVICE_P, template_id: EJ_TEMPLATE_P, user_id: EJ_KEY_P, template_params: {to_email: to, subject: subject, body: body, message: body}})})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); });
+}
+function portalStamp(){ return new Date().toLocaleString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'}); }
+function portalPrintDoc(title, inner){
+  var el = document.getElementById('portalPrint'); if(!el) return;
+  el.innerHTML = '<div style="border-bottom:3px solid #c9a227;padding-bottom:8px;margin-bottom:12px;font-family:Arial,sans-serif;"><div style="font-size:20px;font-weight:800;color:#1a365d;">' + emciEsc(title) + '</div><div style="font-size:12.5px;color:#4a5568;">Loews Hotels Security \u00B7 Orlando \u00B7 ' + emciEsc(portalStamp()) + '</div></div>' + inner + '<div style="margin-top:14px;font-size:11.5px;color:#718096;font-family:Arial,sans-serif;">Produced by: JHNL Security Tech</div>';
+  window.print();
+}
+function portalTable(cols, rows){
+  var h = '<table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12.5px;"><tr>' + cols.map(function(c){ return '<th style="text-align:left;color:#1a365d;border-bottom:2px solid #c9a227;padding:6px;">' + emciEsc(c) + '</th>'; }).join('') + '</tr>';
+  rows.forEach(function(r){ h += '<tr>' + r.map(function(c){ return '<td style="border-bottom:1px solid #e2e8f0;padding:6px;vertical-align:top;color:#2d3748;">' + c + '</td>'; }).join('') + '</tr>'; });
+  return h + '</table>';
+}
+
+/* ---------- EMCI list print + email (email is Jeremy-only \u2014 Duff cannot email this list) ---------- */
+function printEmciList(){
+  if(!EMCI_ROWS.length){ alert('The EMCI queue is empty right now.'); return; }
+  var rows = EMCI_ROWS.map(function(r){ return [emciEsc(r.group), '<b>' + emciEsc(r.id) + '</b>', emciEsc(r.serial), emciEsc(r.model), emciEsc(r.hotel), emciEsc(r.dept), emciEsc(r.status + (r.also ? ' (also: ' + r.also + ')' : '')), emciEsc(r.since), emciEsc(r.reason || '\u2014')]; });
+  portalPrintDoc('EMCI repair list', '<p style="font-family:Arial,sans-serif;font-size:13px;color:#2d3748;margin:0 0 10px;">' + EMCI_ROWS.length + ' radio' + (EMCI_ROWS.length === 1 ? '' : 's') + ' in the EMCI queue \u2014 repair radios only, from the live Radio app data.</p>' + portalTable(['Group', 'Radio', 'Serial', 'Model', 'Hotel', 'Dept', 'Status', 'Since', 'Reason / notes'], rows));
+}
+function emailEmciList(){
+  if(ssoName() !== 'Jeremy Levin'){ alert('Only Jeremy can email this list.'); return; }
+  if(!EMCI_ROWS.length){ alert('The EMCI queue is empty right now.'); return; }
+  var groups = {};
+  EMCI_ROWS.forEach(function(r){ (groups[r.group] = groups[r.group] || []).push(r); });
+  var lines = ['EMCI REPAIR LIST \u2014 Loews Hotels Security', portalStamp(), '', EMCI_ROWS.length + ' radios in the EMCI queue (repair radios only)', ''];
+  Object.keys(groups).forEach(function(g){
+    lines.push(g.toUpperCase() + ' (' + groups[g].length + ')');
+    groups[g].forEach(function(r){
+      lines.push('\u2022 ' + r.id + ' \u2014 ' + r.model + ' \u2014 S/N ' + r.serial + ' \u2014 ' + r.hotel + ' \u2014 ' + r.dept + ' \u2014 ' + r.status + ' \u2014 since ' + r.since);
+      if(r.also) lines.push('  Also: ' + r.also);
+      if(r.reason) lines.push('  ' + r.reason);
+    });
+    lines.push('');
+  });
+  lines.push('Sent from the Loews Security portal by Jeremy Levin.');
+  var body = lines.join('\n');
+  var subj = 'EMCI repair list \u2014 Loews Hotels Security \u2014 ' + portalStamp();
+  Promise.all([portalMail('pmiozza@emciwireless.com', subj, body), portalMail('Jeremy.levin@loewshotels.com', subj, body)])
+    .then(function(){ alert('EMCI list emailed to EMCI (Paul Miozza) and to you.'); })
+    .catch(function(){ alert('Email failed \u2014 check connection and try again.'); });
+}
+
+/* ---------- SecurAlert technician visits \u2014 our internal documentation ---------- */
+var VISITS = [];
+var VISIT_HOTELS = ['PBH', 'HRH', 'RPR', 'SFR', 'AVH', 'CBBR', 'ESS', 'ESD', 'SNR', 'TLR', 'HGH', 'LKW'];
+function visitHotelName(c){ return EMCI_PROP[c] || c; }
+function visitFmtWhen(w){
+  if(!w) return '\u2014';
+  if(String(w).indexOf('T') < 0){ var d0 = new Date(w + 'T12:00:00'); return isNaN(d0) ? emciEsc(w) : d0.toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric'}); }
+  return emciFmtDT(w);
+}
+function visitsLoad(){
+  return driveRow('service-visits').then(function(d){ VISITS = Array.isArray(d.visits) ? d.visits : []; return VISITS; });
+}
+function visitsSaveAll(){
+  return fetch(CHAT_SB + '/rest/v1/app_records', {method: 'POST', headers: Object.assign(padHdr(), {'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'}), body: JSON.stringify({id: 'service-visits', app: 'portal', data: {visits: VISITS, _ts: Date.now()}, updated_at: new Date().toISOString()})});
+}
+function renderVisitsView(){
+  var box = document.getElementById('visitsView'); if(!box) return;
+  box.innerHTML = '<div class="emci-card"><div class="emci-note">Loading service visits\u2026</div></div>';
+  visitsLoad().then(function(){
+    var mine = ssoName();
+    var h = '<div class="emci-card"><h2>Technician service visits</h2>'
+      + '<p class="emci-note" style="margin:0 0 8px;">Our documentation of what the technician from each company did on each visit \u2014 SecurAlert, EMCI and Sciens. Internal only, not shared with the vendors. ' + VISITS.length + ' visit' + (VISITS.length === 1 ? '' : 's') + ' on file.</p>'
+      + '<button class="emci-refresh" onclick="toggleVisitForm()">\uFF0B Log a visit</button> <button class="emci-refresh" onclick="renderVisitsView()">\u21bb Refresh</button> <button class="emci-refresh" onclick="printVisitsList()">\uD83D\uDDA8 Print report</button>'
+      + ' <button class="emci-refresh" onclick="emailVisitsList()">\u2709 Email report</button>'
+      + '<div id="visitForm" style="display:none;margin-top:12px;">'
+      + '<label class="vt-label">Date &amp; time of visit</label><input type="datetime-local" id="vf-when" class="vt-input">'
+      + '<label class="vt-label">Hotel</label><select id="vf-hotel" class="vt-input">' + VISIT_HOTELS.map(function(c){ return '<option value="' + c + '">' + emciEsc(visitHotelName(c)) + '</option>'; }).join('') + '</select>'
+      + '<label class="vt-label">Technician name</label><input type="text" id="vf-tech" class="vt-input" placeholder="Name of the technician">'
+      + '<label class="vt-label">Company</label><select id="vf-vendor" class="vt-input"><option>SecurAlert</option><option>EMCI</option><option>Sciens</option><option>Other</option></select>'
+      + '<label class="vt-label">What the technician did</label><textarea id="vf-did" class="vt-input" rows="6" placeholder="Replaced defective items, batteries changed, units moved\u2026"></textarea>'
+      + '<label class="vt-label">Items / fob IDs involved (optional)</label><input type="text" id="vf-items" class="vt-input" placeholder="e.g. 3 defective receivers left at Security">'
+      + '<button class="emci-refresh" id="vf-save" style="background:#1a365d;color:#fff;" onclick="saveVisit()">Save visit</button> <button class="emci-refresh" onclick="toggleVisitForm()">Cancel</button>'
+      + '</div></div>';
+    if(!VISITS.length) h += '<div class="emci-card"><div class="emci-note" style="text-align:center;padding:16px 8px;">No visits logged yet.<br>Tap \u201cLog a visit\u201d after the technician has been here.</div></div>';
+    VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).forEach(function(v){
+      h += '<div class="emci-card"><div class="ct-shiphead"><span class="ct-when">' + emciEsc(visitHotelName(v.hotel)) + '</span><span class="emci-note">' + emciEsc(visitFmtWhen(v.when)) + '</span></div>'
+        + '<div class="emci-note" style="margin:2px 0 6px;">Company: <b>' + emciEsc(v.vendor || 'SecurAlert') + '</b> \u00B7 Technician: <b>' + emciEsc(v.tech || 'Technician') + '</b></div>'
+        + '<div class="vt-did">' + emciEsc(v.did || '') + '</div>'
+        + (v.items ? '<div class="emci-rnote" style="margin-top:6px;">Items: ' + emciEsc(v.items) + '</div>' : '')
+        + '<div class="emci-note" style="margin-top:8px;">Logged by ' + emciEsc(v.by || '\u2014') + (v.editedAt ? ' \u00B7 edited' : '') + ((v.by === mine || mine === 'Jeremy Levin') ? ' \u00B7 <a href="#" onclick="editVisit(\'' + v.uid + '\');return false;" style="color:#2b6cb0;font-weight:700;">Edit</a> \u00B7 <a href="#" onclick="deleteVisit(\'' + v.uid + '\');return false;" style="color:#b02a2a;font-weight:700;">Delete</a>' : '') + '</div></div>';
+    });
+    box.innerHTML = h;
+    var wf = document.getElementById('vf-when');
+    if(wf){ var n = new Date(); n.setMinutes(n.getMinutes() - n.getTimezoneOffset()); wf.value = n.toISOString().slice(0, 16); }
+  }).catch(function(){
+    box.innerHTML = '<div class="emci-card"><div class="emci-note">Could not load the visits \u2014 check connection and tap the Visits tab again.</div></div>';
+  });
+}
+var VISIT_EDIT_UID = '';
+function toggleVisitForm(){
+  var f = document.getElementById('visitForm'); if(!f) return;
+  var opening = f.style.display === 'none';
+  f.style.display = opening ? '' : 'none';
+  if(!opening){ VISIT_EDIT_UID = ''; var sb = document.getElementById('vf-save'); if(sb) sb.textContent = 'Save visit'; }
+}
+function editVisit(uid){
+  var v = VISITS.find(function(x){ return x.uid === uid; }); if(!v) return;
+  VISIT_EDIT_UID = uid;
+  var f = document.getElementById('visitForm'); if(f) f.style.display = '';
+  var w = document.getElementById('vf-when'); if(w) w.value = String(v.when || '').indexOf('T') >= 0 ? String(v.when).slice(0, 16) : (v.when ? v.when + 'T12:00' : '');
+  var vdEl = document.getElementById('vf-vendor'); if(vdEl) vdEl.value = v.vendor || 'SecurAlert';
+  var hEl = document.getElementById('vf-hotel'); if(hEl) hEl.value = v.hotel || 'TLR';
+  var tEl = document.getElementById('vf-tech'); if(tEl) tEl.value = v.tech || '';
+  var dEl = document.getElementById('vf-did'); if(dEl) dEl.value = v.did || '';
+  var iEl = document.getElementById('vf-items'); if(iEl) iEl.value = v.items || '';
+  var sb = document.getElementById('vf-save'); if(sb) sb.textContent = 'Save changes';
+  var box = document.getElementById('visitsView'); if(box) box.scrollTop = 0;
+}
+function saveVisit(){
+  var vendor = (document.getElementById('vf-vendor') || {}).value || 'SecurAlert';
+  var when = (document.getElementById('vf-when') || {}).value || '';
+  var hotel = (document.getElementById('vf-hotel') || {}).value || '';
+  var tech = ((document.getElementById('vf-tech') || {}).value || '').trim();
+  var did = ((document.getElementById('vf-did') || {}).value || '').trim();
+  var items = ((document.getElementById('vf-items') || {}).value || '').trim();
+  if(!did){ alert('Please write what the technician did \u2014 that is the point of this log.'); return; }
+  if(VISIT_EDIT_UID){
+    var euid = VISIT_EDIT_UID;
+    visitsLoad().then(function(){
+      var v = VISITS.find(function(x){ return x.uid === euid; });
+      if(v){ v.vendor = vendor; v.when = when; v.hotel = hotel; v.tech = tech || (vendor + ' technician'); v.did = did; v.items = items; v.editedBy = ssoName(); v.editedAt = Date.now(); }
+      VISIT_EDIT_UID = '';
+      return visitsSaveAll();
+    })
+      .then(function(){ renderVisitsView(); alert('Visit updated.'); })
+      .catch(function(){ alert('Could not save \u2014 check connection and try again.'); });
+    return;
+  }
+  var rec = {uid: 'v' + Date.now().toString(36), vendor: vendor, when: when, hotel: hotel, tech: tech || (vendor + ' technician'), did: did, items: items, by: ssoName(), ts: Date.now()};
+  visitsLoad().then(function(){ VISITS.unshift(rec); return visitsSaveAll(); })
+    .then(function(){ renderVisitsView(); alert('Visit logged.'); })
+    .catch(function(){ alert('Could not save \u2014 check connection and try again.'); });
+}
+function deleteVisit(uid){
+  if(!confirm('Delete this visit from the log?')) return;
+  visitsLoad().then(function(){ VISITS = VISITS.filter(function(v){ return v.uid !== uid; }); return visitsSaveAll(); })
+    .then(function(){ renderVisitsView(); })
+    .catch(function(){ alert('Could not delete \u2014 check connection and try again.'); });
+}
+/* ---------- FedEx shipments & files (from the Fobs app data) ---------- */
+var FEDEX_STATE = null, FEDEX_PRINT = [];
+function fxEsc(s){ return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function fxDate(iso){
+  if(!iso) return '-';
+  var d = new Date(iso); if(isNaN(d.getTime())) return String(iso);
+  return d.toLocaleString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'});
+}
+function fxTrackLink(trk){
+  return '<a href="https://www.fedex.com/fedextrack/?trknbr=' + encodeURIComponent(trk) + '" target="_blank" rel="noopener" style="color:#1a365d;font-weight:700;">' + fxEsc(trk) + '</a>';
+}
+function fxFobFiles(f){
+  return (f.files || []).filter(function(x){ return x && x.tag === 'FedEx'; });
+}
+function fxFileRow(kind, uid, fl, i){
+  var nm = String(fl.name || 'FedEx file').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid #EDF0F4"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📄 ' + fxEsc(fl.name || 'FedEx file') + '</span><span style="flex:0 0 auto;display:flex;gap:6px;"><button class="emci-refresh" onclick="fedexOpenFile(\'' + kind + '\',\'' + uid + '\',' + i + ')">Open</button><button class="emci-refresh" style="color:#c53030;border-color:#c53030;" onclick="fedexDeleteFile(\'' + kind + '\',\'' + uid + '\',' + i + ',\'' + fxEsc(nm) + '\')">Delete</button></span></div>';
+}
+function fxFobRows(members){
+  if(!members.length) return '<div class="emci-note">No fobs in this shipment yet.</div>';
+  var h = '<table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;"><tr style="text-align:left;color:#4a5568;"><th style="padding:4px 2px;">Fob ID</th><th>Tag</th><th>Hotel</th><th>Received</th></tr>';
+  members.forEach(function(f){
+    h += '<tr style="border-top:1px solid #EDF0F4;"><td style="padding:5px 2px;font-weight:600;">' + fxEsc(f.fobId) + '</td><td>' + fxEsc(f.num || '-') + '</td><td>' + fxEsc(f.prop || '') + '</td><td>' + (f.receivedAt ? '✓ ' + fxDate(f.receivedAt) : '') + '</td></tr>';
+    fxFobFiles(f).forEach(function(fl, i){
+      var realIdx = (f.files || []).indexOf(fl);
+      h += '<tr><td colspan="4" style="padding:0 2px;">' + fxFileRow('fob', f.uid, fl, realIdx) + '</td></tr>';
+    });
+    h += '<tr><td colspan="4" style="padding:4px 2px;"><button class="emci-refresh" onclick="fedexAddFile(\'fob\',\'' + f.uid + '\')">➕ Add FedEx file</button></td></tr>';
+  });
+  return h + '</table>';
+}
+function renderFedexView(){
+  var box = document.getElementById('fedexView'); if(!box) return;
+  box.innerHTML = '<div class="emci-card"><div class="emci-note">Loading FedEx shipments…</div></div>';
+  driveRow('secure-alert-state').then(function(d){
+    FEDEX_STATE = d || {}; FEDEX_PRINT = [];
+    var fobs = Array.isArray(d.fobs) ? d.fobs : [];
+    var ships = Array.isArray(d.shipments) ? d.shipments : [];
+    var shown = {};
+    var byShip = {};
+    fobs.forEach(function(f){ if(f.shipId){ (byShip[f.shipId] = byShip[f.shipId] || []).push(f); } });
+    var h = '<div class="emci-card"><h2>🚛 FedEx — shipments &amp; files</h2>'
+      + '<div class="emci-note">Every fob shipment to SecurAlert with its FedEx tracking and the attached FedEx file copies.</div>'
+      + '<div style="margin-top:8px;"><button class="emci-refresh" onclick="renderFedexView()">↻ Refresh</button> <button class="emci-refresh" onclick="printFedexList()">🖨 Print list</button></div></div>';
+    var cards = '';
+    var sorted = ships.slice().sort(function(a, b){ return String(b.finalizedAt || b.createdAt || '').localeCompare(String(a.finalizedAt || a.createdAt || '')); });
+    sorted.forEach(function(sh){
+      var members = byShip[sh.uid] || [];
+      members.forEach(function(f){ shown[f.uid] = 1; });
+      var fin = sh.status === 'finalized';
+      cards += '<div class="emci-card"><h2>📦 Shipment' + (sh.tracking ? ' — FedEx ' + fxEsc(sh.tracking) : '') + '</h2>'
+        + '<div style="margin:6px 0;"><span style="display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;' + (fin ? 'background:#c6f6d5;color:#276749;' : 'background:#fefcbf;color:#975a16;') + '">' + (fin ? '✓ SHIPPED OUT' : 'BEING PREPARED') + '</span></div>'
+        + (sh.tracking ? '<div class="emci-note">FedEx tracking: ' + fxTrackLink(sh.tracking) + '</div>' : '')
+        + (fin ? '<div class="emci-note">Shipped out ' + fxDate(sh.finalizedAt) + (sh.finalizedBy ? ' by ' + fxEsc(sh.finalizedBy) : '') + '</div>'
+               : '<div class="emci-note">Started ' + fxDate(sh.createdAt) + (sh.createdBy ? ' by ' + fxEsc(sh.createdBy) : '') + '</div>')
+        + fxFobRows(members)
+        + ((sh.files || []).length ? '<div style="margin-top:8px;font-weight:700;font-size:13px;">FedEx files</div>' + (sh.files || []).map(function(fl, i){ return fxFileRow('ship', sh.uid, fl, i); }).join('') : '')
+        + '<div style="margin-top:8px;"><button class="emci-refresh" onclick="fedexAddFile(\'ship\',\'' + sh.uid + '\')">➕ Add file</button></div>' 
+        + '</div>';
+      members.forEach(function(f){ FEDEX_PRINT.push([sh.tracking || '-', fxDate(sh.finalizedAt || f.shipWhen), f.prop || '', f.fobId || '', f.num || '-']); });
+    });
+    var legacy = {};
+    fobs.forEach(function(f){ if(!f.shipId && f.shipTracking){ (legacy[f.shipTracking] = legacy[f.shipTracking] || []).push(f); } });
+    Object.keys(legacy).forEach(function(trk){
+      var members = legacy[trk];
+      members.forEach(function(f){ shown[f.uid] = 1; });
+      var when = members.map(function(f){ return f.shipWhen || ''; }).sort().pop();
+      cards += '<div class="emci-card"><h2>📦 Shipment — FedEx ' + fxEsc(trk) + '</h2>'
+        + '<div style="margin:6px 0;"><span style="display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#c6f6d5;color:#276749;">✓ SHIPPED OUT</span></div>'
+        + '<div class="emci-note">FedEx tracking: ' + fxTrackLink(trk) + '</div>'
+        + '<div class="emci-note">Shipped out ' + fxDate(when) + '</div>'
+        + fxFobRows(members) + '</div>';
+      members.forEach(function(f){ FEDEX_PRINT.push([trk, fxDate(f.shipWhen), f.prop || '', f.fobId || '', f.num || '-']); });
+    });
+    var extra = fobs.filter(function(f){ return !shown[f.uid] && fxFobFiles(f).length; });
+    if(extra.length){
+      cards += '<div class="emci-card"><h2>📄 More FedEx files</h2><div class="emci-note">FedEx files attached to fobs that are not in a shipment above.</div>'
+        + extra.map(function(f){
+            return '<div style="margin-top:8px;font-weight:700;font-size:13.5px;">' + fxEsc(f.fobId) + ' · tag ' + fxEsc(f.num || '-') + ' · ' + fxEsc(f.prop || '') + '</div>'
+              + fxFobFiles(f).map(function(fl){ return fxFileRow('fob', f.uid, fl, (f.files || []).indexOf(fl)); }).join('')
+              + '<div style="margin-top:6px;"><button class="emci-refresh" onclick="fedexAddFile(\'fob\',\'' + f.uid + '\')">➕ Add FedEx file</button></div>';
+          }).join('') + '</div>';
+    }
+    if(!cards) cards = '<div class="emci-card"><div class="emci-note" style="text-align:center;padding:16px 8px;">No FedEx shipments yet.<br>Shipments and their FedEx files from the Fobs app will show up here.</div></div>';
+    box.innerHTML = h + cards;
+  }).catch(function(){
+    box.innerHTML = '<div class="emci-card"><div class="emci-note">Could not load the shipments — check connection and tap the FedEx tab again.</div></div>';
+  });
+}
+function fedexOpenFile(kind, uid, idx){
+  var d = FEDEX_STATE || {};
+  var rec = null;
+  if(kind === 'ship') rec = (d.shipments || []).filter(function(s){ return s.uid === uid; })[0];
+  else rec = (d.fobs || []).filter(function(f){ return f.uid === uid; })[0];
+  var fl = rec && (rec.files || [])[idx];
+  if(!fl || !fl.data){ alert('That file has no readable copy attached.'); return; }
+  var old = document.getElementById('fedexViewer'); if(old) old.remove();
+  var isImg = (fl.type || '').indexOf('image/') === 0;
+  var v = document.createElement('div');
+  v.id = 'fedexViewer';
+  v.style.cssText = 'position:fixed;inset:0;background:rgba(10,20,40,.92);z-index:9999;display:flex;flex-direction:column;padding:14px;';
+  v.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;"><div style="color:#fff;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + fxEsc(fl.name || 'FedEx file') + '</div>'
+    + '<div style="flex:0 0 auto;"><a href="' + fl.data + '" download="' + fxEsc(fl.name || 'fedex-file') + '" style="background:#c9a227;color:#12233d;font-weight:800;border-radius:8px;padding:8px 12px;text-decoration:none;margin-right:8px;">Download</a>'
+    + '<button onclick="document.getElementById(\'fedexViewer\').remove()" style="background:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer;">Close</button></div></div>'
+    + (isImg ? '<img src="' + fl.data + '" style="flex:1;min-height:0;object-fit:contain;width:100%;">'
+             : '<iframe src="' + fl.data + '" style="flex:1;min-height:0;width:100%;background:#fff;border:none;border-radius:8px;"></iframe>');
+  document.body.appendChild(v);
+}
+function fedexReadFile(file, cb){
+  var reader = new FileReader();
+  reader.onload = function(){
+    var data = reader.result;
+    if((file.type || '').indexOf('image/') === 0){
+      var img = new Image();
+      img.onload = function(){
+        var max = 1600, w = img.width, h = img.height;
+        if(w > max || h > max){ var r = max / Math.max(w, h); w = Math.round(w * r); h = Math.round(h * r); }
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        cb({name: file.name || 'fedex-file.jpg', type: 'image/jpeg', data: c.toDataURL('image/jpeg', 0.85)});
+      };
+      img.onerror = function(){ cb({name: file.name || 'fedex-file', type: file.type || '', data: data}); };
+      img.src = data;
+    } else {
+      cb({name: file.name || 'fedex-file', type: file.type || '', data: data});
+    }
+  };
+  reader.readAsDataURL(file);
+}
+function fedexMutate(kind, uid, fn, msg){
+  driveRow('secure-alert-state').then(function(d){
+    var target = null;
+    if(kind === 'ship') target = (d.shipments || []).filter(function(s){ return s.uid === uid; })[0];
+    else target = (d.fobs || []).filter(function(f){ return f.uid === uid; })[0];
+    if(!target){ alert('Could not find that record — tap Refresh and try again.'); return null; }
+    if(fn(target) === false){ return null; }
+    d._ts = Date.now();
+    return fetch(CHAT_SB + '/rest/v1/app_records?id=eq.secure-alert-state', {method: 'PATCH', headers: Object.assign(padHdr(), {'Content-Type': 'application/json', 'Prefer': 'return=minimal'}), body: JSON.stringify({data: d, updated_at: new Date().toISOString()})});
+  }).then(function(r){
+    if(!r) return;
+    if(!r.ok) throw new Error('save failed');
+    renderFedexView(); if(msg) alert(msg);
+  }).catch(function(){ alert('Could not save — check connection and try again.'); });
+}
+function fedexAddFile(kind, uid){
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*,.pdf';
+  inp.onchange = function(){
+    var file = inp.files && inp.files[0]; if(!file) return;
+    if((file.type || '').indexOf('image/') !== 0 && file.size > 4 * 1024 * 1024){ alert('That file is too big — PDFs up to 4 MB.'); return; }
+    fedexReadFile(file, function(rec){
+      fedexMutate(kind, uid, function(target){
+        target.files = target.files || [];
+        if(kind === 'fob'){ rec.tag = 'FedEx'; target.files.push(rec); target.hist = target.hist || []; target.hist.push({t: new Date().toISOString(), e: 'FedEx file attached: ' + rec.name + ' (via portal)'}); }
+        else target.files.push(rec);
+      }, 'File added.');
+    });
+  };
+  inp.click();
+}
+function fedexDeleteFile(kind, uid, idx, name){
+  if(!confirm('Delete "' + (name || 'this file') + '"? This removes the file copy from the app.')) return;
+  fedexMutate(kind, uid, function(target){
+    var arr = target.files || [];
+    var j = (arr[idx] && arr[idx].name === name) ? idx : -1;
+    if(j < 0){ for(var k = 0; k < arr.length; k++){ if(arr[k].name === name){ j = k; break; } } }
+    if(j < 0){ alert('That file is already gone — tap Refresh.'); return false; }
+    var gone = arr[j];
+    target.files = arr.filter(function(_, i){ return i !== j; });
+    if(kind === 'fob'){ target.hist = target.hist || []; target.hist.push({t: new Date().toISOString(), e: 'FedEx file removed: ' + (gone.name || 'file') + ' (via portal)'}); }
+  }, 'File deleted.');
+}
+function printFedexList(){
+  if(!FEDEX_PRINT.length){ alert('No shipped fobs to print yet.'); return; }
+  var rows = FEDEX_PRINT.map(function(r){ return [r[0], r[1], r[2], r[3], r[4]]; });
+  portalPrintDoc('FedEx shipments — SecurAlert fobs', '<p style="font-family:Arial,sans-serif;font-size:13px;color:#2d3748;margin:0 0 10px;">Fobs shipped to SecurAlert by FedEx — ' + portalStamp() + '</p>' + portalTable(['FedEx tracking', 'Shipped out', 'Hotel', 'Fob ID', 'Tag'], rows));
+}
+
+function printVisitsList(){
+  if(!VISITS.length){ alert('No visits on file yet.'); return; }
+  var rows = VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).map(function(v){
+    return [emciEsc(visitFmtWhen(v.when)), emciEsc(v.vendor || 'SecurAlert'), emciEsc(visitHotelName(v.hotel)), emciEsc(v.tech || 'Technician'), '<span style="white-space:pre-wrap;">' + emciEsc(v.did || '') + '</span>', emciEsc(v.items || '\u2014'), emciEsc(v.by || '\u2014')];
+  });
+  portalPrintDoc('Technician service visits \u2014 service report', '<p style="font-family:Arial,sans-serif;font-size:13px;color:#2d3748;margin:0 0 10px;">Internal documentation of vendor technician service visits (SecurAlert, EMCI, Sciens) \u2014 what was done at each hotel.</p>' + portalTable(['Date / time', 'Company', 'Hotel', 'Technician', 'What was done', 'Items', 'Logged by'], rows));
+}
+function emailVisitsList(){
+  if(!VISITS.length){ alert('No visits on file yet.'); return; }
+  var lines = ['TECHNICIAN SERVICE VISITS \u2014 SERVICE REPORT', 'Loews Hotels Security \u00B7 ' + portalStamp(), 'Internal documentation \u2014 SecurAlert, EMCI and Sciens visits. Not shared with the vendors.', ''];
+  VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).forEach(function(v){
+    lines.push((v.vendor || 'SecurAlert') + ' \u2014 ' + visitHotelName(v.hotel) + ' \u2014 ' + visitFmtWhen(v.when));
+    lines.push('Technician: ' + (v.tech || 'Technician'));
+    lines.push(v.did || '');
+    if(v.items) lines.push('Items: ' + v.items);
+    lines.push('Logged by ' + (v.by || '\u2014'));
+    lines.push('');
+  });
+  var sender = ssoName() || 'A team member';
+  lines.push('Sent from the Loews Security portal by ' + sender + '.');
+  var vrows = VISITS.slice().sort(function(a, b){ return String(b.when || '').localeCompare(String(a.when || '')); }).map(function(v){
+    return [emciEsc(visitFmtWhen(v.when)), emciEsc(v.vendor || 'SecurAlert'), emciEsc(visitHotelName(v.hotel)), emciEsc(v.tech || 'Technician'), '<span style="white-space:pre-wrap;">' + emciEsc(v.did || '') + '</span>', emciEsc(v.items || '\u2014'), emciEsc(v.by || '\u2014')];
+  });
+  var vhtml = '<div style="font-family:Arial,sans-serif;"><div style="font-size:19px;font-weight:800;color:#1a365d;">Technician service visits \u2014 service report</div>'
+    + '<div style="font-size:12.5px;color:#4a5568;margin:2px 0 10px;">Loews Hotels Security \u00B7 ' + emciEsc(portalStamp()) + ' \u00B7 Internal documentation \u2014 SecurAlert, EMCI and Sciens visits. Not shared with the vendors.</div>'
+    + portalTable(['Date / time', 'Company', 'Hotel', 'Technician', 'What was done', 'Items', 'Logged by'], vrows)
+    + '<div style="margin-top:12px;font-size:11.5px;color:#718096;">Sent from the Loews Security portal by ' + emciEsc(sender) + ' \u00B7 Produced by: JHNL Security Tech</div></div>';
+  var vsubj = 'Technician service visits \u2014 service report \u2014 ' + portalStamp();
+  fetch('https://api.emailjs.com/api/v1.0/email/send', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({service_id: EJ_SERVICE_P, template_id: 'template_8171jco', user_id: EJ_KEY_P, template_params: {to_email: 'Jeremy.levin@loewshotels.com', subject: vsubj, body: vhtml}})})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); alert('Service report emailed to Jeremy.'); })
+    .catch(function(){ portalMail('Jeremy.levin@loewshotels.com', vsubj, lines.join('\n')).then(function(){ alert('Service report emailed to Jeremy.'); }).catch(function(){ alert('Email failed \u2014 check connection and try again.'); }); });
+}
+
+function loadTab(which){
+  if(loadedTabs[which]) return;
+  loadedTabs[which] = true;
+  var frame = document.getElementById('frame-' + which);
+  if(frame && APP_URLS[which]){
+    /* hourly freshness stamp: no device can sit on a days-old cached copy of an app */
+    var d = new Date();
+    var stamp = d.getFullYear() + ('0'+(d.getMonth()+1)).slice(-2) + ('0'+d.getDate()).slice(-2) + ('0'+d.getHours()).slice(-2);
+    /* Hand the portal login to the tab in its address: inside the app the
+       frames cannot always read this page's localStorage, so the name rides
+       in the URL and each app picks it up from there. */
+    var sso = '';
+    if(ssoAuthed() && ssoName()) sso = '&u=' + encodeURIComponent(ssoName());
+    frame.src = APP_URLS[which] + '?h=' + stamp + sso;
+    if(which === 'chat' || which === 'inspect' || which === 'contractor' || which === 'emci'){
+      [700, 2000, 4000].forEach(function(ms){ setTimeout(function(){ pushSSO(which); }, ms); });
+    }
+  }
+}
+
+/* Tab frames ask for the portal login by message: inside the app, a frame
+   cannot read this page's storage, so the login is handed over directly. */
+window.addEventListener('message', function(ev){
+  if(!ev.data || ev.data.type !== 'loews-sso-request') return;
+  try{
+    if(ssoAuthed() && ssoName() && ev.source){
+      ev.source.postMessage({type:'loews-sso', user: ssoName()}, '*');
+    }
+  }catch(e){}
+});
+/* The portal also pushes the login to Chat/Inspect/Contractor on its own,
+   more than once, so a tab that starts late still receives it. */
+function pushSSO(which){
+  try{
+    if(!ssoAuthed()) return;
+    var u = ssoName(); if(!u) return;
+    var f = document.getElementById('frame-' + which);
+    if(f && f.contentWindow) f.contentWindow.postMessage({type:'loews-sso', user: u}, '*');
+  }catch(e){}
+}
+try{ var bt = document.getElementById('buildtag'); if(bt) bt.textContent = document.documentElement.getAttribute('data-build') || ''; }catch(e){}
+
+function applyProfileTabs(){
+  var me = ssoName();
+  var owner = (me === 'Jeremy Levin');
+  document.querySelectorAll('[data-owneronly]').forEach(function(b){ b.style.display = owner ? '' : 'none'; });
+  var keys3 = (me === 'Jeremy Levin' || me === 'Sean Forester' || me === 'Justin Messenger');
+  document.querySelectorAll('[data-keys3]').forEach(function(b){ b.style.display = keys3 ? '' : 'none'; });
+  if(!keys3){ var actk = document.querySelector('.tabpage.active'); if(actk && actk.id === 'page-keys') switchTab('fobs'); }
+  if(!owner){
+    var act = document.querySelector('.tabpage.active');
+    if(act && (act.id === 'page-packages' || act.id === 'page-parking' || act.id === 'page-contractor' || act.id === 'page-emci')) switchTab('fobs');
+  }
+}
+function switchTab(which){
+  if((which === 'packages' || which === 'parking' || which === 'contractor' || which === 'emci') && ssoName() !== 'Jeremy Levin') which = 'fobs';
+  if(which === 'keys' && ['Jeremy Levin','Sean Forester','Justin Messenger'].indexOf(ssoName()) < 0) which = 'fobs';
+  document.querySelectorAll('.tabbar button').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-tab') === which);
+  });
+  document.querySelectorAll('.tabpage').forEach(function(p){
+    p.classList.toggle('active', p.id === 'page-' + which);
+  });
+  loadTab(which); /* lazy-load on first visit; SSO keys already in localStorage */
+  if(which === 'drive') driveRefresh();
+  if(which === 'emci') renderEmciView();
+  if(which === 'contractor') renderContractorView();
+  if(which === 'visits') renderVisitsView();
+  if(which === 'fedex') renderFedexView();
+  if(which === 'chat'){
+    setTimeout(function(){ try{ if(_chatNewest) localStorage.setItem('chatSeenTs', _chatNewest); if(_dmNewest) localStorage.setItem('dmAlertSeen', _dmNewest); }catch(e){} setChatBadge(0); }, 1500);
+  }
+}
+
+function greetWord(){
+  var h = new Date().getHours();
+  if(h < 12) return 'Good morning';
+  if(h < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+function showGreeting(name){
+  var bar = document.getElementById('greetbar'); if(!bar) return;
+  var first = (name || '').split(' ')[0] || 'there';
+  var h = new Date().getHours();
+  var icon = h >= 17 ? '\uD83C\uDF19' : '\u2600\uFE0F';
+  bar.textContent = icon + ' ' + greetWord() + ', ' + first + ' \u2014 Welcome to work';
+  bar.classList.add('show');
+  setTimeout(function(){ bar.classList.remove('show'); }, 6000);
+}
+var CHAT_SB = 'https://qxqrwusaynfqadjfqswe.supabase.co';
+var CHAT_KEY = 'sb_publishable_2ba9yzEA89uqXHJ6v-_cQg_AmwwEfFF';
+var _chatNewest = '';
+function setChatBadge(n){
+  var el = document.getElementById('chatBadge'); if(!el) return;
+  if(n > 0){ el.textContent = n > 99 ? '99+' : String(n); el.classList.add('on'); }
+  else { el.classList.remove('on'); }
+}
+function chatIsOpen(){
+  var p = document.getElementById('page-chat');
+  return !!(p && p.classList.contains('active'));
+}
+async function pollChatBadge(){
+  try{
+    var me = ssoName();
+    var r = await fetch(CHAT_SB + '/rest/v1/app_records?id=eq.team-chat&select=data', {headers:{apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY}});
+    if(!r.ok) return;
+    var rows = await r.json();
+    var msgs = (rows && rows[0] && rows[0].data && Array.isArray(rows[0].data.messages)) ? rows[0].data.messages : [];
+    if(!msgs.length){ setChatBadge(0); return; }
+    _chatNewest = msgs[msgs.length - 1].ts || '';
+    var seen = localStorage.getItem('chatSeenTs');
+    if(seen === null){ localStorage.setItem('chatSeenTs', _chatNewest); setChatBadge(0); _prevUnread = 0; _lastAlertTs = _chatNewest; return; }
+    if(chatIsOpen()){ localStorage.setItem('chatSeenTs', _chatNewest); setChatBadge(0); return; }
+    var n = 0;
+    for(var i = msgs.length - 1; i >= 0; i--){
+      var m = msgs[i];
+      if(m.ts && m.ts > seen){ if(m.name !== me) n++; } else break;
+    }
+    setChatBadge(n);
+    if(_prevUnread !== null && n > 0 && _chatNewest && _chatNewest !== _lastAlertTs){
+      var newestOther = null;
+      for(var j = msgs.length - 1; j >= 0; j--){ if(msgs[j].name !== me){ newestOther = msgs[j]; break; } }
+      if(newestOther && newestOther.ts === _chatNewest){
+        _lastAlertTs = _chatNewest;
+        showMsgAlert('💬 Team Chat — ' + newestOther.name, newestOther.text || '📎 File');
+        ding();
+      }
+    }
+    if(n === 0) _lastAlertTs = _chatNewest;
+    _prevUnread = n;
+  }catch(e){}
+}
+function startChatBadge(){
+  if(window._chatPoll) return;
+  pollChatBadge();
+  pollDmAlerts();
+  window._chatPoll = setInterval(function(){ pollChatBadge(); pollDmAlerts(); }, 30000);
+}
+var _prevUnread = null;
+var _lastAlertTs = '';
+var _dmNewest = '';
+var _audioCtx = null;
+document.addEventListener('pointerdown', function(){ try{ if(!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if(_audioCtx.state === 'suspended') _audioCtx.resume(); }catch(e){} }, true);
+function ding(){
+  try{
+    if(!_audioCtx) return;
+    var t0 = _audioCtx.currentTime;
+    [880, 1174].forEach(function(fq, i){
+      var o = _audioCtx.createOscillator(), g = _audioCtx.createGain();
+      o.type = 'sine'; o.frequency.value = fq;
+      g.gain.setValueAtTime(0.0001, t0 + i * 0.13);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + i * 0.13 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.13 + 0.12);
+      o.connect(g); g.connect(_audioCtx.destination);
+      o.start(t0 + i * 0.13); o.stop(t0 + i * 0.13 + 0.14);
+    });
+  }catch(e){}
+}
+var _alertTimer = null;
+function showMsgAlert(title, body, ms){
+  var el = document.getElementById('msgalert'); if(!el) return;
+  document.getElementById('msgalert-t').textContent = title;
+  document.getElementById('msgalert-b').textContent = body || '';
+  el.classList.add('show');
+  if(_alertTimer) clearTimeout(_alertTimer);
+  _alertTimer = setTimeout(function(){ el.classList.remove('show'); }, ms || 7000);
+}
+function msgAlertTap(){
+  var el = document.getElementById('msgalert'); if(el) el.classList.remove('show');
+  switchTab('chat');
+}
+async function pollDmAlerts(){
+  try{
+    var me = ssoName();
+    var r = await fetch(CHAT_SB + '/rest/v1/app_records?id=eq.team-dms&select=data', {headers:{apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY}});
+    if(!r.ok) return;
+    var rows = await r.json();
+    var msgs = (rows && rows[0] && rows[0].data && Array.isArray(rows[0].data.messages)) ? rows[0].data.messages : [];
+    var mine = msgs.filter(function(m){ return m.to === me; });
+    var seen = localStorage.getItem('dmAlertSeen');
+    if(!mine.length){ if(seen === null) localStorage.setItem('dmAlertSeen', ''); return; }
+    _dmNewest = mine[mine.length - 1].ts || '';
+    if(seen === null){ localStorage.setItem('dmAlertSeen', _dmNewest); return; }
+    if(chatIsOpen()){ localStorage.setItem('dmAlertSeen', _dmNewest); return; }
+    var fresh = mine.filter(function(m){ return m.ts && m.ts > seen; });
+    if(fresh.length){
+      var last = fresh[fresh.length - 1];
+      localStorage.setItem('dmAlertSeen', _dmNewest);
+      showMsgAlert('🔒 Private message — ' + last.from, last.text || '📎 File');
+      ding();
+    }
+  }catch(e){}
+}
+/* ---------- phone push notifications (Web Push) ---------- */
+var VAPID_PUBLIC = 'BJfgT7g2e9KpW9BtsCVxJ9P9p6bUTcadUzn7JO9U7pMh0tVf5WohBT7oM5snXflg_EjjqpWlnnBsDuQw2znfCi8';
+function urlB64ToUint8(b64){ var pad = '='.repeat((4 - b64.length % 4) % 4); var s = (b64 + pad).replace(/-/g, '+').replace(/_/g, '/'); var raw = atob(s); var arr = new Uint8Array(raw.length); for(var i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i); return arr; }
+function pushSupported(){ return ('serviceWorker' in navigator) && ('PushManager' in window) && ('Notification' in window); }
+function updateBell(){ var b = document.getElementById('bellbtn'); if(!b) return; var on = pushSupported() && Notification.permission === 'granted'; b.textContent = on ? '🔔' : '🔕'; }
+async function savePushSub(sub){
+  try{
+    var me = ssoName();
+    var sj = sub.toJSON();
+    var entry = {name: me, sub: {endpoint: sj.endpoint, keys: sj.keys}, ts: new Date().toISOString()};
+    var rows = [];
+    var r = await fetch(CHAT_SB + '/rest/v1/app_records?id=eq.push-subs&select=data', {headers:{apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY}});
+    if(r.ok) rows = await r.json();
+    var subs = (rows && rows[0] && rows[0].data && Array.isArray(rows[0].data.subs)) ? rows[0].data.subs : [];
+    subs = subs.filter(function(x){ return x.sub && x.sub.endpoint !== entry.sub.endpoint; });
+    subs.push(entry);
+    await fetch(CHAT_SB + '/rest/v1/app_records', {method: 'POST', headers:{apikey: CHAT_KEY, Authorization: 'Bearer ' + CHAT_KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'}, body: JSON.stringify({id: 'push-subs', app: 'push', data: {subs: subs}, updated_at: new Date().toISOString()})});
+  }catch(e){}
+}
+async function ensurePushSub(){
+  updateBell();
+  if(!pushSupported() || Notification.permission !== 'granted') return;
+  try{
+    var reg = await navigator.serviceWorker.register('sw.js');
+    var sub = await reg.pushManager.getSubscription();
+    if(!sub) sub = await reg.pushManager.subscribe({userVisibleOnly: true, applicationServerKey: urlB64ToUint8(VAPID_PUBLIC)});
+    if(sub) await savePushSub(sub);
+  }catch(e){}
+  updateBell();
+}
+function maybeAskPush(){
+  try{
+    if(!pushSupported()) return;
+    if(Notification.permission !== 'default') return;
+    if(localStorage.getItem('pushAsked') === '1') return;
+    localStorage.setItem('pushAsked', '1');
+    setTimeout(function(){ enablePhoneAlerts(); }, 1500);
+  }catch(e){}
+}
+async function enablePhoneAlerts(){
+  if(!pushSupported()){
+    showMsgAlert('🔔 Phone notifications', 'On an iPhone, open this app from its home-screen icon (Add to Home Screen first), then tap the bell again.', 9000);
+    return;
+  }
+  try{
+    var perm = await Notification.requestPermission();
+    if(perm !== 'granted'){
+      showMsgAlert('🔔 Phone notifications', 'Notifications are off — allow them when asked, or in your phone/browser settings, then tap the bell again.', 9000);
+      return;
+    }
+    var reg = await navigator.serviceWorker.register('sw.js');
+    var sub = await reg.pushManager.getSubscription();
+    if(!sub) sub = await reg.pushManager.subscribe({userVisibleOnly: true, applicationServerKey: urlB64ToUint8(VAPID_PUBLIC)});
+    await savePushSub(sub);
+    showMsgAlert('🔔 Phone notifications ON', 'Your phone will buzz for new team chat and private messages.', 6000);
+  }catch(e){
+    showMsgAlert('🔔 Phone notifications', 'Could not turn on here — try from the home-screen app icon.', 9000);
+  }
+  updateBell();
+}
+function showShell(name){
+  SSO_USER = name || SSO_USER;
+  try{ var bt2 = document.getElementById('buildtag'); if(bt2) bt2.textContent = (document.documentElement.getAttribute('data-build') || '') + ' · sso: ' + (SSO_USER || 'MISSING'); }catch(e){}
+  applyProfileTabs();
+  document.getElementById('uni-login').style.display = 'none';
+  document.getElementById('app-shell').classList.add('on');
+  document.getElementById('whoami').textContent = '';
+  switchTab('fobs');
+  showGreeting(name);
+  startChatBadge();
+  ensurePushSub();
+  maybeAskPush();
+}
+
+function uniLogin(){
+  var name = document.getElementById('uni-name').value;
+  var pin = document.getElementById('uni-pin').value.trim();
+  var err = document.getElementById('uni-err');
+  if(!name){ err.textContent = 'Select your name.'; return; }
+  if(TEAM_PINS[name] !== pin){ err.textContent = 'Wrong PIN — try again.'; return; }
+  err.textContent = '';
+  writeSSO(name);          /* SSO written BEFORE any iframe loads */
+  showShell(name);
+}
+
+function uniLogout(){
+  SSO_USER = '';
+  try{ localStorage.removeItem('loewsAuth'); localStorage.removeItem('loewsUser'); }catch(e){}
+  /* unload iframes so next login re-checks SSO cleanly */
+  ['fobs','cams','radio','chat','clients','inspect'].forEach(function(which){
+    loadedTabs[which] = false;
+    var frame = document.getElementById('frame-' + which);
+    if(frame) frame.removeAttribute('src');
+  });
+  document.getElementById('app-shell').classList.remove('on');
+  document.getElementById('uni-login').style.display = 'flex';
+  document.getElementById('uni-pin').value = '';
+  document.getElementById('uni-err').textContent = '';
+}
+
+/* Enter key submits PIN */
+document.getElementById('uni-pin').addEventListener('keypress', function(e){
+  if(e.key === 'Enter') uniLogin();
+});
+
+/* Auto-login if a previous SSO session exists */
+(function(){
+  try{
+    if(localStorage.getItem('loewsAuth') === '1' && localStorage.getItem('loewsUser')){
+      var name = localStorage.getItem('loewsUser');
+      var sel = document.getElementById('uni-name');
+      for(var i = 0; i < sel.options.length; i++){
+        if(sel.options[i].value === name){ sel.selectedIndex = i; break; }
+      }
+      showShell(name);
+    }
+  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  var now = new Date();
+  var m = now.getMonth() + 1, d = now.getDate();
+  function thanksgivingDay(y){ var nov1 = new Date(y, 10, 1); return 1 + ((4 - nov1.getDay() + 7) % 7) + 21; }
+  var key = null;
+  if(m === 10 && d === 31) key = 'halloween';
+  else if(m === 11 && d === thanksgivingDay(now.getFullYear())) key = 'thanksgiving';
+  else if(m === 12 && d === 25) key = 'christmas';
+  else if(m === 1 && d === 1) key = 'newyear';
+  else if(m === 2 && d === 14) key = 'valentine';
+  if(!key) return;
+  var sp = document.getElementById('holidaySplash');
+  var vid = document.getElementById('hsVideo');
+  var img = document.getElementById('hsPoster');
+  var sb = document.getElementById('hsSound');
+  if(!sp || !vid || !img || !sb) return;
+  var base = 'holiday-' + key;
+  img.src = base + '.jpg';
+  vid.poster = base + '.jpg';
+  vid.src = base + '.mp4';
+  var hsMuted = true;
+  vid.muted = true;
+  sp.classList.add('on');
+  try{ var p = vid.play(); if(p && p.catch) p.catch(function(){}); }catch(e){}
+  var gone = false;
+  function dismiss(){ if(gone) return; gone = true; try{ vid.pause(); }catch(e){} sp.classList.remove('on'); sp.style.display = 'none'; }
+  sp.addEventListener('click', dismiss);
+  sb.addEventListener('click', function(ev){
+    ev.stopPropagation();
+    hsMuted = !hsMuted;
+    vid.muted = hsMuted;
+    if(!hsMuted){ try{ var p2 = vid.play(); if(p2 && p2.catch) p2.catch(function(){}); }catch(e){} sb.textContent = '🔇 Sound off'; }
+    else sb.textContent = '🔊 Sound on';
+  });
+  setTimeout(dismiss, 12000);
+})();
+</script>
+</body>
+</html>
